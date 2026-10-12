@@ -70,16 +70,9 @@
     .brand img { height: 44px; width: auto; }
     .brand-tag { display: flex; align-items: center; gap: 14px; }
     .brand-tag span { font-size: 15px; font-weight: 600; color: var(--brown-muted); border-inline-start: 1px solid var(--line); padding-inline-start: 14px; }
-    .nav-links { display: flex; align-items: center; gap: 32px; font-size: 17px; font-weight: 600; }
-    .nav-links a { padding: 6px 0; border-bottom: 2px solid transparent; transition: border-color .2s, color .2s; }
-    .nav-links a:hover { border-bottom-color: var(--orange); }
     .nav-actions { display: flex; align-items: center; gap: 12px; }
     .nav-phone { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: var(--brown); direction: ltr; }
     .nav-phone svg { width: 18px; height: 18px; fill: var(--orange); }
-    .menu-btn { display: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); cursor: pointer; align-items: center; justify-content: center; }
-    .menu-btn span { display: block; width: 18px; height: 2px; background: var(--brown); position: relative; }
-    .menu-btn span::before, .menu-btn span::after { content: ''; position: absolute; left: 0; width: 18px; height: 2px; background: var(--brown); }
-    .menu-btn span::before { top: -6px; } .menu-btn span::after { top: 6px; }
 
     /* Hero */
     .hero { padding: 24px 0 0; }
@@ -148,11 +141,6 @@
     .card-foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--brown-muted); }
 
     /* About program */
-    .about { background: var(--peach); }
-    .about-grid { max-width: 820px; margin: 0 auto; text-align: center; }
-    .about .section-head .label { justify-content: center; }
-    .about h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; font-weight: 700; margin-bottom: 18px; }
-    .about p { font-size: 19px; font-weight: 300; color: var(--brown-soft); margin-bottom: 14px; }
 
     /* Contact */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
@@ -186,7 +174,6 @@
     }
     @media (max-width: 1024px) {
       .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-      .nav-links { display: none; }
       .brand-tag span { display: none; }
     }
     @media (max-width: 767px) {
@@ -218,11 +205,6 @@
         <img src="/assets/img/dimri-logo-dark.svg" alt="י.ח. דמרי" width="173" height="60">
         <span>מחיר למשתכן</span>
       </a>
-      <nav class="nav-links" aria-label="ניווט ראשי">
-        <a href="#projects">הפרויקטים</a>
-        <a href="#about">על התכנית</a>
-        <a href="#contact">יצירת קשר</a>
-      </nav>
       <div class="nav-actions">
         <a class="nav-phone" href="tel:*2475" aria-label="חייגו 2475 כוכבית">
           <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>
@@ -243,7 +225,6 @@
             <p>פרויקטי המגורים של דמרי במסגרת תכנית מחיר למשתכן של משרד הבינוי והשיכון: באשקלון, באופקים, בקריית ביאליק, ובקרוב גם בכרמי גת צפון.</p>
             <div class="hero-actions">
               <a class="btn btn-orange" href="#projects">לפרויקטים</a>
-              <a class="btn btn-outline" href="#about">על התכנית</a>
             </div>
           </div>
         </div>
@@ -334,17 +315,6 @@
       </div>
     </section>
 
-    <section id="about" class="about">
-      <div class="wrap about-grid">
-        <div>
-          <div class="section-head" style="margin-bottom:0;display:block">
-            <h2>מה זה מחיר למשתכן?</h2>
-          </div>
-          <p>מחיר למשתכן היא תכנית של משרד הבינוי והשיכון, שבמסגרתה נמכרות דירות חדשות בהנחה לזכאים, באמצעות הגרלות. הזכאות נקבעת על ידי המשרד, וההרשמה להגרלות מתבצעת באתר ההגרלות הייעודי.</p>
-          <p>י.ח. דמרי, מהחברות הגדולות והוותיקות בענף הבנייה בישראל, מלווה את תכנית מחיר למשתכן מראשיתה. שלושה פרויקטים של החברה במסגרת התכנית, באשקלון, באופקים ובקריית ביאליק, כבר שווקו במלואם, ופרויקט דמרי NEXT בכרמי גת צפון הוא הבא בתור. הדירות בתכנית נבנות באותו סטנדרט בנייה ומפרט של כל פרויקטי דמרי, ובליווי צוות המכירות והשירות של החברה מרגע הזכייה בהגרלה ועד קבלת המפתח.</p>
-        </div>
-      </div>
-    </section>
 
     <section id="contact" class="contact">
       <div class="wrap contact-grid">
