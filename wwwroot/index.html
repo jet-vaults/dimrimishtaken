@@ -146,12 +146,7 @@
     .card .city { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; color: var(--brown-muted); font-weight: 400; }
     .card .city svg { width: 16px; height: 16px; fill: none; stroke: var(--orange); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .card p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
-    .facts { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 2px; padding-top: 14px; border-top: 1px solid var(--line); }
-    .facts li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; }
-    .facts li::before { content: ''; flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); margin-top: 9px; }
     .card-foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--brown-muted); }
-    .card-foot .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--peach-line); background: var(--peach); color: var(--brown); border-radius: var(--radius-pill); padding: 6px 14px; font-weight: 600; font-size: 14px; }
-    .card-foot .pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
 
     /* About program */
     .about { background: var(--peach); }
@@ -292,8 +287,7 @@
               <div class="card-logo"><img src="/assets/img/dimri-logo-dark.svg" alt="דמרי NEXT" loading="lazy"></div>
               <h3>דמרי NEXT</h3>
               <span class="city"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> כרמי גת צפון, קריית גת</span>
-              <p>הפרויקט הבא של דמרי במסגרת התכנית, בשכונת כרמי גת צפון. פרטים נוספים יפורסמו בקרוב.</p>
-              <div class="card-foot"><span class="pill">מחיר למשתכן</span><span>בקרוב</span></div>
+              <div class="card-foot"><span>בקרוב</span></div>
             </div>
           </article>
 
@@ -306,13 +300,7 @@
               <div class="card-logo"><img src="/assets/img/even-ezra-logo.webp" alt="דמרי רמות אשקלון" loading="lazy"></div>
               <h3>דמרי רמות אשקלון</h3>
               <span class="city"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> אשקלון, שכונת רמות החדשה</span>
-              <p>סטנדרט מגורים חדש באשקלון, בשכונת בוטיק מתפתחת עם נגישות גבוהה לכביש 4 ולתחנת הרכבת.</p>
-              <ul class="facts">
-                <li>6 בנייני מגורים בני 13 קומות, על שני מגרשים</li>
-                <li>דירות 3–5 חדרים, דירות גן, מיני-פנטהאוזים ופנטהאוזים</li>
-                <li>מרפסות מרווחות ומפרט עשיר</li>
-              </ul>
-              <div class="card-foot"><span class="pill">מחיר למשתכן</span><span>הגרלות 2327, 2330</span></div>
+              <div class="card-foot"><span>הגרלות 2327, 2330</span></div>
             </div>
           </article>
 
@@ -325,13 +313,7 @@
               <div class="card-logo"><img src="/assets/img/ofakim-logo.webp" alt="דמרי אפיקי הנחל אופקים" loading="lazy"></div>
               <h3>דמרי אפיקי הנחל</h3>
               <span class="city"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> אופקים, שכונת אפיקי הנחל</span>
-              <p>בלב השכונה החדשה בצידה המזרחי של אופקים, במרחק קצר ממתחם מסחר ותעסוקה ומתחנת הרכבת.</p>
-              <ul class="facts">
-                <li>בנייני מגורים מודרניים בני 5–8 קומות בלבד</li>
-                <li>דירות 3–5 חדרים מרווחות, דירות גן ופנטהאוזים</li>
-                <li>סמוך למוסדות חינוך, פארקים ומרכזי פנאי</li>
-              </ul>
-              <div class="card-foot"><span class="pill">מחיר למשתכן</span><span>הנגב המערבי</span></div>
+              <div class="card-foot"><span>הנגב המערבי</span></div>
             </div>
           </article>
 
@@ -344,13 +326,7 @@
               <div class="card-logo"><img src="/assets/img/afeka-logo.webp" alt="דמרי אפקה בשמורה קריית ביאליק" loading="lazy"></div>
               <h3>דמרי אפקה בשמורה</h3>
               <span class="city"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> קריית ביאליק, שכונת אפקה</span>
-              <p>בצמוד לשמורת הטבע עין אפק, עם חיבור מהיר לכביש 22 ולכביש 6 ונגישות מלאה למרכז העיר.</p>
-              <ul class="facts">
-                <li>4 מגדלי מגורים</li>
-                <li>דירות 3, 4 ו‑5 חדרים, דירות גן ופנטהאוזים</li>
-                <li>נוף פתוח לשמורה ולסביבה ירוקה</li>
-              </ul>
-              <div class="card-foot"><span class="pill">מחיר למשתכן</span><span>הגרלה 2418</span></div>
+              <div class="card-foot"><span>הגרלה 2418</span></div>
             </div>
           </article>
         </div>
