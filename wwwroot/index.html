@@ -53,7 +53,7 @@
       transition: background-color .25s, color .25s, box-shadow .25s, transform .25s;
       white-space: nowrap;
     }
-    .btn-orange { background: var(--orange); color: var(--white); box-shadow: 0 2px 2px rgba(206, 62, 0, 0.2); }
+    .btn-orange { background: var(--orange); color: var(--white); }
     .btn-orange:hover { background: var(--orange-dark); transform: translateY(-1px); }
     .btn-outline { border: 1px solid var(--white); color: var(--white); }
     .btn-outline:hover { background: var(--white); color: var(--brown); }
@@ -71,8 +71,6 @@
     .brand-tag { display: flex; align-items: center; gap: 14px; }
     .brand-tag span { font-size: 15px; font-weight: 600; color: var(--brown-muted); border-inline-start: 1px solid var(--line); padding-inline-start: 14px; }
     .nav-actions { display: flex; align-items: center; gap: 12px; }
-    .nav-phone { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: var(--brown); direction: ltr; }
-    .nav-phone svg { width: 18px; height: 18px; fill: var(--orange); }
 
     /* Hero */
     .hero { padding: 24px 0 0; }
@@ -181,7 +179,6 @@
       .wrap { padding: 0 16px; }
       .nav { height: 68px; }
       .brand img { height: 36px; }
-      .nav-phone { display: none; }
       .nav .btn { padding: 10px 18px; font-size: 15px; }
       .hero { padding-top: 16px; }
       .hero-inner { min-height: 520px; }
@@ -206,10 +203,6 @@
         <span>מחיר למשתכן</span>
       </a>
       <div class="nav-actions">
-        <a class="nav-phone" href="tel:*2475" aria-label="חייגו 2475 כוכבית">
-          <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8z"/></svg>
-          *2475
-        </a>
         <a class="btn btn-orange" href="https://www.dimri.co.il/" target="_blank" rel="noopener">לאתר דמרי</a>
       </div>
     </div>
