@@ -125,7 +125,7 @@
     .section-head p { font-size: 18px; font-weight: 300; color: var(--brown-soft); max-width: 460px; }
 
     /* Project cards */
-    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .projects { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
     .card {
       background: var(--white); border-radius: var(--radius-sm); overflow: hidden;
       box-shadow: var(--shadow); display: flex; flex-direction: column;
@@ -142,16 +142,19 @@
       padding: 9px 18px 9px 16px; border-radius: 0 3px 3px 0;
       box-shadow: 0 2px 2px rgba(206, 62, 0, 0.2);
     }
+    .card-media.soon { background: linear-gradient(160deg, var(--brown) 0%, #1f120d 100%); display: grid; place-items: center; }
+    .card-media.soon img { width: 46%; height: auto; opacity: .9; transition: none; }
+    .card:hover .card-media.soon img { transform: none; }
     .status.done { background: linear-gradient(270deg, var(--brown), #1f120d); box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); }
-    .card-body { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
-    .card-logo { height: 54px; display: flex; align-items: center; }
-    .card-logo img { max-height: 54px; width: auto; }
-    .card h3 { font-size: 24px; font-weight: 700; line-height: 1.15; }
+    .card-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .card-logo { height: 48px; display: flex; align-items: center; }
+    .card-logo img { max-height: 48px; width: auto; }
+    .card h3 { font-size: 22px; font-weight: 700; line-height: 1.15; }
     .card .city { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; color: var(--brown-muted); font-weight: 400; }
     .card .city svg { width: 16px; height: 16px; fill: none; stroke: var(--orange); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .card p { font-size: 17px; font-weight: 300; color: var(--brown-soft); }
+    .card p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
     .facts { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 2px; padding-top: 14px; border-top: 1px solid var(--line); }
-    .facts li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; }
+    .facts li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; }
     .facts li::before { content: ''; flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); margin-top: 9px; }
     .card-foot { margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--brown-muted); }
     .card-foot .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--peach-line); background: var(--peach); color: var(--brown); border-radius: var(--radius-pill); padding: 6px 14px; font-weight: 600; font-size: 14px; }
@@ -189,8 +192,10 @@
     .foot-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; font-size: 14px; font-weight: 300; opacity: .75; }
 
     /* Responsive */
+    @media (max-width: 1199px) {
+      .projects { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
     @media (max-width: 1024px) {
-      .projects { grid-template-columns: repeat(2, 1fr); }
       .contact-grid { grid-template-columns: 1fr; gap: 36px; }
       .nav-links { display: none; }
       .brand-tag span { display: none; }
@@ -247,7 +252,7 @@
           <div class="hero-content">
             <div class="eyebrow"><i></i> י.ח. דמרי &middot; תכנית מחיר למשתכן</div>
             <h1><small>י.ח. דמרי</small>מחיר למשתכן</h1>
-            <p>פרויקטי המגורים של דמרי במסגרת תכנית מחיר למשתכן של משרד הבינוי והשיכון, באשקלון, באופקים ובקריית ביאליק. שיווק הפרויקטים הסתיים, והעמוד משמש את הזוכים והרוכשים לקבלת מידע.</p>
+            <p>פרויקטי המגורים של דמרי במסגרת תכנית מחיר למשתכן של משרד הבינוי והשיכון: באשקלון, באופקים, בקריית ביאליק, ובקרוב גם בכרמי גת צפון.</p>
             <div class="hero-actions">
               <a class="btn btn-orange" href="#projects">לפרויקטים</a>
               <a class="btn btn-outline" href="#about">על התכנית</a>
@@ -262,15 +267,15 @@
         <div class="strip-grid">
           <div class="strip-item">
             <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg></div>
-            <div><b>3 פרויקטים</b><span>אשקלון, אופקים וקריית ביאליק</span></div>
+            <div><b>מחיר למשתכן</b><span>דירות חדשות בהנחה לזכאי משרד הבינוי והשיכון</span></div>
           </div>
           <div class="strip-item">
             <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 5.3 5.6.6-4.2 3.9 1.2 5.7L12 14.7 7 17.5l1.2-5.7L4 7.9l5.6-.6z"/></svg></div>
             <div><b>מעל 32 שנות בנייה</b><span>חברת נדל״ן ובנייה מובילה בישראל</span></div>
           </div>
           <div class="strip-item">
-            <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-            <div><b>שיווק הסתיים</b><span>כל הדירות בפרויקטים נמכרו</span></div>
+            <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.6 7.6a5.5 5.5 0 1 1-7.8 7.8 5.5 5.5 0 0 1 7.8-7.8zm0 0L19 4m-3.5 3.5L18 10"/></svg></div>
+            <div><b>ליווי אישי עד המפתח</b><span>מרכישת הדירה ועד המסירה, וגם אחר כך</span></div>
           </div>
         </div>
       </div>
@@ -283,10 +288,23 @@
             <div class="label">הפרויקטים</div>
             <h2>פרויקטי דמרי במחיר למשתכן</h2>
           </div>
-          <p>שלושת הפרויקטים שווקו במסגרת הגרלות מחיר למשתכן של משרד הבינוי והשיכון. השיווק בכולם הסתיים.</p>
         </div>
 
         <div class="projects">
+          <article class="card">
+            <div class="card-media soon">
+              <img src="/assets/img/dimri-logo-white.svg" alt="" loading="lazy">
+              <span class="status">בקרוב</span>
+            </div>
+            <div class="card-body">
+              <div class="card-logo"><img src="/assets/img/dimri-logo-dark.svg" alt="דמרי NEXT" loading="lazy"></div>
+              <h3>דמרי NEXT</h3>
+              <span class="city"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> כרמי גת צפון, קריית גת</span>
+              <p>הפרויקט הבא של דמרי במסגרת התכנית, בשכונת כרמי גת צפון. פרטים נוספים יפורסמו בקרוב.</p>
+              <div class="card-foot"><span class="pill">מחיר למשתכן</span><span>בקרוב</span></div>
+            </div>
+          </article>
+
           <article class="card">
             <div class="card-media">
               <img src="/assets/img/even-ezra.webp" alt="הדמיית פרויקט דמרי רמות אשקלון" loading="lazy">
@@ -355,7 +373,7 @@
             <h2>מה זה מחיר למשתכן?</h2>
           </div>
           <p>מחיר למשתכן היא תכנית של משרד הבינוי והשיכון, שבמסגרתה נמכרות דירות חדשות בהנחה לזכאים, באמצעות הגרלות. הזכאות נקבעת על ידי המשרד, וההרשמה להגרלות מתבצעת באתר ההגרלות הייעודי.</p>
-          <p>פרויקטי דמרי בתכנית שווקו בהגרלות משרד הבינוי והשיכון, וכל הדירות בהם נמכרו. המידע המחייב בנוגע לתכנית הוא זה המופיע באתר משרד הבינוי והשיכון; המידע בעמוד זה הוא לרקע כללי בלבד.</p>
+          <p>פרויקטי דמרי בתכנית משווקים בהגרלות משרד הבינוי והשיכון. המידע המחייב בנוגע לתכנית הוא זה המופיע באתר משרד הבינוי והשיכון; המידע בעמוד זה הוא לרקע כללי בלבד.</p>
         </div>
       </div>
     </section>
