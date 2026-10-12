@@ -12,7 +12,7 @@
 | **Private storage** | `https://jetvaults.blob.core.windows.net/dimrimishtaken-private/` |
 | **Public container** | `dimrimishtaken` |
 | **Private container** | `dimrimishtaken-private` |
-| **Activated** | No |
+| **Activated** | Yes |
 
 ## Nameservers
 
