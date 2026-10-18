@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>סימון בניינים · כרמי גת צפון</title>
+  <style>
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-regular.woff") format("woff"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-bold.woff") format("woff"); font-weight: 700; font-display: swap; }
+    :root { --brown:#311E17; --lime:#C1E437; --lime-dark:#A9CC2A; --olive:#6F7A1F; --line:#E5E5E5; --sand:#F7F7F2; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Ploni", Arial, sans-serif; color: var(--brown); background: var(--sand); font-size: 17px; line-height: 1.5; }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 24px 60px; }
+    h1 { font-size: 26px; margin-bottom: 6px; }
+    .help { font-size: 15px; color: #5a4e49; margin-bottom: 16px; max-width: 900px; }
+    .help b { color: var(--brown); }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .bar .label { font-weight: 700; margin-inline-end: 4px; }
+    button { font: inherit; cursor: pointer; border: 1px solid var(--line); background: #fff; color: var(--brown); border-radius: 50px; padding: 8px 16px; font-weight: 700; transition: background .15s, border-color .15s; }
+    button:hover { border-color: var(--lime-dark); }
+    button.on { background: var(--lime); border-color: var(--lime); }
+    button.danger:hover { background: #fde8e6; border-color: #e4a39c; }
+    .bld { width: 42px; height: 42px; padding: 0; border-radius: 50%; display: grid; place-items: center; font-size: 18px; }
+    .stage { position: relative; border-radius: 5px; overflow: hidden; background: #ddd; box-shadow: 0 4px 32px rgba(0,0,0,.09); user-select: none; -webkit-user-select: none; touch-action: none; }
+    .stage img { display: block; width: 100%; height: auto; pointer-events: none; }
+    .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+    polygon { fill: rgba(193,228,55,.18); stroke: var(--lime); stroke-width: 2; vector-effect: non-scaling-stroke; transition: fill .15s; }
+    polygon:hover, polygon.hover { fill: rgba(193,228,55,.55); }
+    polygon.active { stroke: #fff; stroke-dasharray: 6 4; fill: rgba(193,228,55,.35); }
+    polyline { fill: none; stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; stroke-dasharray: 6 4; }
+    .pt { fill: #fff; stroke: var(--brown); stroke-width: 2; vector-effect: non-scaling-stroke; cursor: grab; }
+    .pt.first { fill: var(--lime); }
+    .pt:active { cursor: grabbing; }
+    .tag { font-family: inherit; font-weight: 700; font-size: 20px; fill: var(--brown); pointer-events: none; }
+    .tagbg { fill: var(--lime); pointer-events: none; }
+    .out { margin-top: 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start; }
+    textarea { width: 100%; min-height: 180px; font: 13px/1.5 Consolas, monospace; direction: ltr; text-align: left; border: 1px solid var(--line); border-radius: 5px; padding: 10px; background: #fff; color: var(--brown); }
+    .col { display: grid; gap: 8px; }
+    .msg { font-size: 14px; color: var(--olive); min-height: 20px; margin-top: 6px; }
+    .status { font-size: 15px; color: #5a4e49; margin-bottom: 10px; }
+    @media (max-width: 767px) { .wrap { padding: 14px 12px 40px; } .out { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>סימון הבניינים על ההדמיה</h1>
+    <p class="help">
+      בוחרים מספר בניין, ואז <b>לוחצים על ההדמיה</b> נקודה אחרי נקודה סביב גג הבניין (4–8 נקודות מספיקות). את הנקודות אפשר <b>לגרור</b>, ולחיצה כפולה על נקודה מוחקת אותה.
+      כשמסיימים בניין עוברים לבניין הבא. בסוף לוחצים <b>העתק</b> ושולחים לי את הטקסט. אפשר להתחיל מההצעה הראשונית ולתקן אותה.
+      הסימון נשמר בדפדפן הזה, אז אפשר לעזוב ולחזור.
+    </p>
+    <div class="bar">
+      <span class="label">בניין:</span>
+      <button class="bld" data-b="1">1</button><button class="bld" data-b="2">2</button><button class="bld" data-b="3">3</button>
+      <button class="bld" data-b="4">4</button><button class="bld" data-b="5">5</button><button class="bld" data-b="6">6</button>
+      <span style="flex:1"></span>
+      <button id="undo">בטל נקודה אחרונה</button>
+      <button id="clear" class="danger">נקה את הבניין הזה</button>
+      <button id="preset">טען הצעה ראשונית</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div class="stage" id="stage">
+      <img src="/assets/img/cgn/aerial-park-1600.webp" width="1600" height="900" alt="">
+      <svg id="svg" viewBox="0 0 1600 900" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="out">
+      <div>
+        <textarea id="json" spellcheck="false"></textarea>
+        <div class="msg" id="msg"></div>
+      </div>
+      <div class="col">
+        <button id="copy" class="on">העתק</button>
+        <button id="load">טען מהטקסט</button>
+        <button id="reset" class="danger">מחק הכול</button>
+      </div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var KEY = 'cgn-map-polys';
+    var W = 1600, H = 900;
+    var PRESET = {
+      "1": [[17.0, 8.7], [24.5, 8.7], [24.5, 30.5], [17.0, 30.5]],
+      "6": [[26.3, 7.8], [33.7, 7.8], [33.7, 24.0], [26.3, 24.0]],
+      "5": [[35.0, 4.5], [42.8, 4.5], [42.8, 22.8], [35.0, 22.8]],
+      "2": [[17.2, 37.8], [24.0, 37.8], [24.0, 52.3], [17.2, 52.3]],
+      "3": [[26.9, 38.4], [33.1, 38.4], [33.1, 52.3], [26.9, 52.3]],
+      "4": [[35.0, 38.4], [41.6, 38.4], [41.6, 52.3], [35.0, 52.3]]
+    };
+    // percentages are of the full picture width/height; the picture is 16:9
+    // the preset above was estimated on a 960px-wide copy, so scale x/y to percent of the 16:9 frame
+    Object.keys(PRESET).forEach(function (k) { PRESET[k] = PRESET[k].map(function (p) { return [r2(p[0] * 100 / 60), r2(p[1] * 100 / 56.25)]; }); });
+
+    var polys = load() || {};
+    var active = '1';
+    var svg = document.getElementById('svg'), stage = document.getElementById('stage');
+    var ta = document.getElementById('json'), msg = document.getElementById('msg'), status = document.getElementById('status');
+    var drag = null;
+
+    function r2(n) { return Math.round(n * 100) / 100; }
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(polys)); } catch (e) {} }
+    function toSvg(p) { return (p[0] * W / 100) + ',' + (p[1] * H / 100); }
+    function centroid(pts) { var x = 0, y = 0; pts.forEach(function (p) { x += p[0]; y += p[1]; }); return [x / pts.length, y / pts.length]; }
+
+    function render() {
+      var out = '';
+      Object.keys(polys).sort().forEach(function (b) {
+        var pts = polys[b]; if (!pts || !pts.length) return;
+        var isA = b === active;
+        if (pts.length >= 3) out += '<polygon data-b="' + b + '" class="' + (isA ? 'active' : '') + '" points="' + pts.map(toSvg).join(' ') + '"></polygon>';
+        else if (pts.length === 2) out += '<polyline points="' + pts.map(toSvg).join(' ') + '"></polyline>';
+        if (pts.length >= 3) {
+          var c = centroid(pts), cx = c[0] * W / 100, cy = c[1] * H / 100;
+          out += '<circle class="tagbg" cx="' + cx + '" cy="' + cy + '" r="22"></circle><text class="tag" x="' + cx + '" y="' + (cy + 7) + '" text-anchor="middle">' + b + '</text>';
+        }
+        if (isA) pts.forEach(function (p, i) { out += '<circle class="pt' + (i === 0 ? ' first' : '') + '" data-i="' + i + '" cx="' + (p[0] * W / 100) + '" cy="' + (p[1] * H / 100) + '" r="7"></circle>'; });
+      });
+      svg.innerHTML = out;
+      document.querySelectorAll('.bld').forEach(function (btn) { btn.classList.toggle('on', btn.dataset.b === active); });
+      var n = (polys[active] || []).length;
+      status.textContent = 'בניין ' + active + ': ' + n + ' נקודות' + (n < 3 ? ' (צריך לפחות 3)' : '') + ' · ' + Object.keys(polys).filter(function (b) { return polys[b].length >= 3; }).length + ' מתוך 6 בניינים מסומנים';
+      ta.value = JSON.stringify(polys, null, 1).replace(/\[\n\s+([\d.]+),\n\s+([\d.]+)\n\s+\]/g, '[$1, $2]');
+      save();
+    }
+
+    function pos(e) {
+      var r = stage.getBoundingClientRect();
+      return [r2(Math.min(100, Math.max(0, (e.clientX - r.left) / r.width * 100))), r2(Math.min(100, Math.max(0, (e.clientY - r.top) / r.height * 100)))];
+    }
+
+    svg.addEventListener('pointerdown', function (e) {
+      var t = e.target;
+      if (t.classList.contains('pt')) { drag = { i: +t.dataset.i, moved: false }; svg.setPointerCapture(e.pointerId); e.preventDefault(); return; }
+      if (t.tagName === 'polygon' && t.dataset.b !== active) { active = t.dataset.b; render(); return; }
+      polys[active] = polys[active] || []; polys[active].push(pos(e)); render();
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drag) return; drag.moved = true; polys[active][drag.i] = pos(e); render();
+    });
+    svg.addEventListener('pointerup', function () { drag = null; });
+    svg.addEventListener('dblclick', function (e) {
+      var t = e.target; if (!t.classList.contains('pt')) return;
+      polys[active].splice(+t.dataset.i, 1); render();
+    });
+    document.querySelectorAll('.bld').forEach(function (btn) { btn.addEventListener('click', function () { active = btn.dataset.b; render(); }); });
+    document.getElementById('undo').addEventListener('click', function () { if (polys[active]) { polys[active].pop(); render(); } });
+    document.getElementById('clear').addEventListener('click', function () { polys[active] = []; render(); });
+    document.getElementById('preset').addEventListener('click', function () { polys = JSON.parse(JSON.stringify(PRESET)); render(); msg.textContent = 'נטענה הצעה ראשונית, גררו את הנקודות כדי לדייק.'; });
+    document.getElementById('reset').addEventListener('click', function () { if (confirm('למחוק את כל הסימונים?')) { polys = {}; render(); } });
+    document.getElementById('load').addEventListener('click', function () {
+      try { var v = JSON.parse(ta.value); polys = v; render(); msg.textContent = 'נטען.'; } catch (e) { msg.textContent = 'הטקסט אינו JSON תקין.'; }
+    });
+    document.getElementById('copy').addEventListener('click', function () {
+      ta.select();
+      var done = function () { msg.textContent = 'הועתק. אפשר להדביק לי את זה בצ׳אט.'; };
+      if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(done, function () { document.execCommand('copy'); done(); });
+      else { document.execCommand('copy'); done(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.target === ta) return;
+      if (e.key >= '1' && e.key <= '6') { active = e.key; render(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); if (polys[active]) { polys[active].pop(); render(); } }
+    });
+    if (!Object.keys(polys).length) polys = JSON.parse(JSON.stringify(PRESET));
+    render();
+  })();
+  </script>
+</body>
+</html>
