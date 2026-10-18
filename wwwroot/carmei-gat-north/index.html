@@ -91,17 +91,17 @@
     .hero-inner {
       position: relative; overflow: hidden; border-radius: var(--radius-sm);
       min-height: 600px; display: flex; align-items: flex-end;
-      background: var(--brown);
+      background: #000;
     }
     .hero-inner picture, .hero-inner img.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .hero-inner img.bg { object-fit: cover; object-position: 45% 55%; }
     .hero-inner::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(49, 30, 23, 0.92) 0%, rgba(49, 30, 23, 0.55) 45%, rgba(49, 30, 23, 0.15) 100%);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.12) 100%);
     }
-    .hero-content { position: relative; z-index: 1; padding: 64px 56px; max-width: 760px; color: var(--white); }
+    .hero-content { position: relative; z-index: 1; padding: 64px 56px; max-width: 920px; color: var(--white); }
     .hero-logo { width: 190px; height: auto; margin-bottom: 26px; border-radius: 3px; }
-    .hero h1 { font-size: clamp(40px, 5.2vw, 68px); line-height: 1.05; font-weight: 700; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(26px, 4.6vw, 64px); line-height: 1.05; white-space: nowrap; font-weight: 700; margin-bottom: 18px; }
     .hero h1 small { display: block; font-size: .5em; font-weight: 300; margin-bottom: 8px; opacity: .9; }
     .hero p { font-size: 20px; font-weight: 300; max-width: 560px; margin-bottom: 30px; color: rgba(255, 255, 255, 0.92); }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -131,8 +131,6 @@
     .prose h3:first-child { margin-top: 0; }
     .wide { margin-top: 44px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
     .wide img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 45%; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--brown); font-weight: 700; font-size: 15px; line-height: 1; padding: 9px 14px; border-radius: 3px; margin-bottom: 18px; }
-    .badge svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* About: brand panel beside a render, full text in two columns below */
     .about-panel { display: grid; grid-template-columns: 1.1fr .9fr; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); min-height: 520px; background: var(--brown); }
@@ -147,15 +145,9 @@
     .about-panel img { object-fit: cover; }
     .about-text { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
 
-    /* Kiryat Gat: city figures strip, text beside a tall render */
-    .city-nums { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 48px; }
-    .city-nums div { padding: 26px 28px; }
-    .city-nums div + div { border-inline-start: 1px solid var(--line); }
-    .city-nums b { display: block; font-size: 44px; line-height: 1; font-weight: 700; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
-    .city-nums span { font-size: 15px; color: var(--brown-muted); }
-    .city-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+    .city-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
     .city-grid figure { border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
-    .city-grid img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; }
+    .city-grid img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
 
     /* Neighbourhood: soft field, four fact cards */
     .area { background: #F7F7F2; }
@@ -197,8 +189,6 @@
     .stage .big::before { content: counter(stage, decimal-leading-zero); }
     .stage h3 { font-size: 21px; margin-bottom: 8px; }
     .stage p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
-    .stage .btn { margin-top: 16px; }
-    .steps-note { margin-top: 48px; font-size: 15px; font-weight: 300; color: var(--brown-muted); max-width: 760px; }
 
     /* CTA band */
     .cta { background: var(--lime); }
@@ -241,9 +231,6 @@
       .about-panel, .about-text, .city-grid, .stages { grid-template-columns: 1fr; }
       .about-panel { min-height: 0; }
       .about-panel img { aspect-ratio: 16 / 9; }
-      .city-nums { grid-template-columns: repeat(2, 1fr); }
-      .city-nums div:nth-child(3) { border-inline-start: 0; }
-      .city-nums div:nth-child(n+3) { border-top: 1px solid var(--line); }
       .city-grid img { aspect-ratio: 16 / 10; }
       .stage:nth-last-child(2) { border-bottom: 1px solid #E3E3D8; }
       .facts { grid-template-columns: repeat(2, 1fr); }
@@ -268,14 +255,10 @@
       .panel .fig { gap: 22px; }
       .panel .fig b { font-size: 32px; }
       .about-text { gap: 28px; margin-top: 32px; }
-      .city-nums { margin-bottom: 32px; }
-      .city-nums div { padding: 18px 16px; }
-      .city-nums b { font-size: 32px; }
       .city-grid { gap: 24px; }
       .facts { grid-template-columns: 1fr; gap: 10px; }
       .fact { flex-direction: row; align-items: center; padding: 16px 18px; }
       .wide img { aspect-ratio: 4 / 3; }
-      .badge { font-size: 14px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .gallery-grid button:first-child { grid-column: span 2; grid-row: auto; }
       .docs { grid-template-columns: 1fr; }
@@ -321,7 +304,6 @@
           </picture>
           <div class="hero-content">
             <img class="hero-logo" src="/assets/img/cgn/next-logo-640.webp" srcset="/assets/img/cgn/next-logo-320.webp 320w, /assets/img/cgn/next-logo-640.webp 640w" sizes="190px" alt="דמרי NEXT כרמי גת צפון" width="640" height="361" fetchpriority="high">
-            <div class="badge"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></svg>פרויקט במסגרת תכנית מחיר למשתכן</div>
             <h1><small>י.ח. דמרי</small>דמרי NEXT כרמי גת צפון</h1>
             <p>מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית, בשכונת כרמי גת צפון בקריית גת.</p>
             <div class="hero-actions">
@@ -428,13 +410,6 @@
             <div class="label">העיר</div>
             <h2>אודות קריית גת</h2>
           </div>
-          <p>מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים, בתנופת גידול נרחבת.</p>
-        </div>
-        <div class="city-nums">
-          <div><b>1956</b><span>שנת ייסוד העיר</span></div>
-          <div><b>79,000</b><span>תושבים בסוף 2025</span></div>
-          <div><b>90%+</b><span>זכאות לבגרות בבתי הספר בעיר</span></div>
-          <div><b>Intel</b><span>בראש אזורי התעשייה והתעסוקה</span></div>
         </div>
         <div class="city-grid">
           <div class="prose">
@@ -460,7 +435,6 @@
             <div class="label">הדמיות</div>
             <h2>גלריה</h2>
           </div>
-          <p>הבניינים, הפארק הפנימי, הכניסות ושטחי המסחר, ביום ובלילה. לחיצה על תמונה פותחת אותה במסך מלא.</p>
         </div>
         <div class="gallery-grid" id="gallery-grid">
           <button type="button" data-full="towers-day" data-cap="מגדלי הפרויקט מהרחוב, ביום"><picture><source type="image/avif" srcset="/assets/img/cgn/towers-day-960.avif 960w, /assets/img/cgn/towers-day-1600.avif 1600w"><img src="/assets/img/cgn/towers-day-960.webp" srcset="/assets/img/cgn/towers-day-960.webp 960w, /assets/img/cgn/towers-day-1600.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 820px" width="960" height="540" alt="מגדלי הפרויקט מהרחוב, ביום" loading="lazy"></picture></button>
@@ -485,7 +459,6 @@
             <div class="label">מסמכים</div>
             <h2>קבצים להורדה</h2>
           </div>
-          <p>חוברת הפרויקט, תוכניות הדירות והמסמכים יעלו לכאן לקראת פתיחת ההרשמה.</p>
         </div>
         <ul class="docs">
           <li class="doc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></div><div><b>חוברת הפרויקט</b><span>PDF</span></div><span class="soon">בקרוב</span></li>
@@ -513,11 +486,8 @@
           <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>אישור עקרוני למשכנתא</h3><p>עוד לפני בחירת הדירה פונים לבנק לקבלת אישור עקרוני, כדי לדעת איזה מימון עומד לרשותכם ולבחור דירה בביטחון.</p></div></li>
           <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בחירת הדירה</h3><p>במועד שנקבע, לפי סדר הזכייה, בוחרים דירה מתוך המלאי הפנוי. מגיעים עם הודעת הזכייה, אישור זכאות בתוקף ותעודות זהות. הבחירה סופית ומלווה בדמי רצינות שמתקזזים ממחיר הדירה.</p></div></li>
           <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>חתימה על חוזה המכר</h3><p>חותמים על ההסכם שאושר על ידי משרד הבינוי והשיכון, מיד לאחר הבחירה או עד 30 יום ממנה. בזכייה זוגית שני בני הזוג חותמים.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p>
-            <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
-            <a class="btn btn-lime" href="#inventory-url-pending" data-inventory>מלאי דירות</a></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p></div></li>
         </ol>
-        <p class="steps-note">המועדים והכללים נקבעים על ידי משרד הבינוי והשיכון ועשויים להשתנות. המידע המחייב הוא זה המתפרסם באתר המשרד, והתיאור כאן נועד להתמצאות כללית בלבד.</p>
       </div>
     </section>
 
