@@ -177,25 +177,23 @@
     .doc span { font-size: 15px; color: var(--brown-muted); }
     .doc .soon { margin-inline-start: auto; font-size: 14px; font-weight: 600; color: var(--brown-muted); background: var(--sand); border-radius: var(--radius-pill); padding: 6px 12px; white-space: nowrap; }
 
-    /* Steps */
-    .steps { background: var(--brown); color: var(--white); }
-    .steps .section-head .label { color: var(--lime); }
-    .steps .section-head p { color: rgba(255, 255, 255, 0.8); }
-    .track { counter-reset: stage; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; position: relative; }
-    .step {
-      counter-increment: stage; position: relative;
-      background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-sm);
-      padding: 26px 24px 24px; display: flex; flex-direction: column; gap: 10px;
-    }
+    /* Steps: timeline, circles on a line */
+    .steps { background: #F7F7F2; }
+    .track { counter-reset: stage; display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px 24px; }
+    .step { counter-increment: stage; position: relative; padding-top: 70px; }
+    .step::before { content: ''; position: absolute; top: 22px; inset-inline: -24px; height: 3px; background: var(--lime-line); }
+    .step:nth-child(4n+1)::before { inset-inline-start: 23px; }
+    .step:nth-child(4n)::before { inset-inline-end: calc(100% - 23px); }
     .step .num {
-      width: 44px; height: 44px; border-radius: 50%; background: var(--lime); color: var(--brown);
-      display: grid; place-items: center; font-weight: 700; font-size: 20px; margin-bottom: 6px;
+      position: absolute; top: 0; inset-inline-start: 0; width: 46px; height: 46px; border-radius: 50%;
+      background: var(--lime); color: var(--brown); display: grid; place-items: center;
+      font-weight: 700; font-size: 20px; box-shadow: 0 0 0 6px #F7F7F2;
     }
     .step .num::before { content: counter(stage); }
-    .step h3 { font-size: 21px; color: var(--white); }
-    .step p { font-size: 16px; font-weight: 300; color: rgba(255, 255, 255, 0.82); }
-    .step .btn { margin-top: auto; align-self: flex-start; }
-    .steps-note { margin-top: 32px; font-size: 15px; font-weight: 300; color: rgba(255, 255, 255, 0.7); max-width: 760px; }
+    .step h3 { font-size: 21px; margin-bottom: 8px; }
+    .step p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
+    .step .btn { margin-top: 16px; }
+    .steps-note { margin-top: 48px; font-size: 15px; font-weight: 300; color: var(--brown-muted); max-width: 760px; }
 
     /* CTA band */
     .cta { background: var(--lime); }
@@ -234,6 +232,9 @@
     /* Responsive */
     @media (max-width: 1199px) {
       .track { grid-template-columns: repeat(2, 1fr); }
+      .step:nth-child(n)::before { inset-inline: -24px; }
+      .step:nth-child(2n+1)::before { inset-inline-start: 23px; }
+      .step:nth-child(2n)::before { inset-inline-end: calc(100% - 23px); }
     }
     @media (max-width: 1024px) {
       .brand-tag span { display: none; }
@@ -268,7 +269,10 @@
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .gallery-grid button:first-child { grid-column: span 2; grid-row: auto; }
       .docs { grid-template-columns: 1fr; }
-      .track { grid-template-columns: 1fr; gap: 14px; }
+      .track { grid-template-columns: 1fr; gap: 28px; }
+      .step { padding-top: 0; padding-inline-start: 64px; min-height: 46px; }
+      .step:nth-child(n)::before { top: 46px; bottom: -28px; height: auto; width: 3px; inset-inline: auto; inset-inline-start: 22px; }
+      .step:last-child::before { display: none; }
       .foot-top { flex-direction: column; align-items: flex-start; }
       .foot-bottom { flex-direction: column; }
       .lightbox figcaption { padding: 12px 16px 18px; }
