@@ -124,16 +124,21 @@
     .section-head p { font-size: 18px; font-weight: 300; color: var(--brown-soft); max-width: 460px; }
     h3 { font-size: 22px; font-weight: 700; line-height: 1.2; }
 
-    /* Two-column text + picture */
-    .two { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
-    .two.flip > .pic { order: -1; }
+    /* Text in two columns, pictures as bands */
     .prose p { font-size: 18px; font-weight: 300; color: var(--brown-soft); margin-bottom: 1em; }
     .prose p:last-child { margin-bottom: 0; }
     .prose h3 { margin: 1.6em 0 .5em; color: var(--brown); }
     .prose h3:first-child { margin-top: 0; }
-    .pic { position: sticky; top: 108px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
-    .pic img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
-    .pic figcaption { padding: 12px 16px; font-size: 15px; color: var(--brown-muted); background: var(--white); }
+    .cols { columns: 2; column-gap: 56px; }
+    .cols p, .cols h3 { break-inside: avoid; }
+    .cols h3 { margin-top: 0; }
+    .band { display: grid; grid-template-columns: 1.5fr 1fr; gap: 22px; margin-top: 44px; }
+    .band figure, .wide { border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
+    .band img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
+    .wide { margin-top: 44px; }
+    .wide img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 45%; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--brown); font-weight: 700; font-size: 15px; line-height: 1; padding: 9px 14px; border-radius: 3px; margin-bottom: 18px; }
+    .badge svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Figures */
     .figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 32px; }
@@ -141,14 +146,13 @@
     .figure b { display: block; font-size: 40px; line-height: 1; font-weight: 700; margin-bottom: 6px; }
     .figure span { font-size: 15px; color: var(--brown-muted); }
 
-    /* Facts cards (neighbourhood) */
-    .facts { display: grid; gap: 14px; margin-top: 8px; }
-    .fact { display: flex; align-items: center; gap: 16px; padding: 18px 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--white); }
-    .fact .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--lime); display: grid; place-items: center; flex: 0 0 46px; }
-    .fact .ic svg { width: 20px; height: 20px; fill: none; stroke: var(--brown); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .fact span { font-size: 17px; }
-    .area { background: var(--lime-pale); }
-    .area .fact { border-color: var(--lime-line); }
+    /* Neighbourhood: soft field, four fact cards */
+    .area { background: #F7F7F2; }
+    .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 4px 0 44px; }
+    .fact { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; border: 1px solid #ECECE3; border-radius: var(--radius-sm); background: var(--white); }
+    .fact .ic { width: 46px; height: 46px; border-radius: 50%; background: #EEF3E2; display: grid; place-items: center; flex: 0 0 46px; }
+    .fact .ic svg { width: 20px; height: 20px; fill: none; stroke: var(--olive); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .fact span { font-size: 17px; line-height: 1.45; }
 
     /* Gallery */
     .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -162,10 +166,6 @@
     .gallery-grid button:hover img { transform: scale(1.06); }
     .gallery-grid button:first-child { grid-column: span 2; grid-row: span 2; }
     .gallery-grid button:first-child img { aspect-ratio: auto; }
-    .gallery-grid .cap {
-      position: absolute; bottom: 0; inset-inline: 0; padding: 36px 16px 14px; color: var(--white); font-size: 15px; font-weight: 600; text-align: start;
-      background: linear-gradient(0deg, rgba(49, 30, 23, 0.85), rgba(49, 30, 23, 0));
-    }
 
     /* Downloads */
     .docs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -238,9 +238,7 @@
     @media (max-width: 1024px) {
       .brand-tag span { display: none; }
       .nav-links { display: none; }
-      .two, .two.flip { grid-template-columns: 1fr; gap: 32px; }
-      .two.flip > .pic { order: 0; }
-      .pic { position: static; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 767px) {
@@ -258,12 +256,17 @@
       .strip-item + .strip-item { border-inline-start: 0; border-top: 1px solid var(--line); }
       section { padding: 60px 0; }
       .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
+      .cols { columns: 1; }
+      .band { grid-template-columns: 1fr; gap: 12px; }
+      .facts { grid-template-columns: 1fr; gap: 10px; }
+      .fact { flex-direction: row; align-items: center; padding: 16px 18px; }
+      .wide img { aspect-ratio: 4 / 3; }
+      .badge { font-size: 14px; }
       .figures { gap: 10px; }
       .figure { padding: 14px 12px; text-align: center; }
       .figure b { font-size: 30px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .gallery-grid button:first-child { grid-column: span 2; grid-row: auto; }
-      .gallery-grid .cap { display: none; }
       .docs { grid-template-columns: 1fr; }
       .track { grid-template-columns: 1fr; gap: 14px; }
       .foot-top { flex-direction: column; align-items: flex-start; }
@@ -279,7 +282,7 @@
     <div class="wrap nav">
       <a class="brand brand-tag" href="/" aria-label="דמרי מחיר למשתכן">
         <img src="/assets/img/dimri-logo-dark.svg" alt="י.ח. דמרי" width="173" height="60">
-        <span>דמרי NEXT · כרמי גת צפון</span>
+        <span>מחיר למשתכן · כרמי גת צפון</span>
       </a>
       <nav class="nav-links" aria-label="ניווט בעמוד">
         <a href="#about">על הפרויקט</a>
@@ -305,7 +308,8 @@
           </picture>
           <div class="hero-content">
             <img class="hero-logo" src="/assets/img/cgn/next-logo-640.webp" srcset="/assets/img/cgn/next-logo-320.webp 320w, /assets/img/cgn/next-logo-640.webp 640w" sizes="190px" alt="דמרי NEXT כרמי גת צפון" width="640" height="361" fetchpriority="high">
-            <h1><small>י.ח. דמרי · מחיר למשתכן</small>דמרי NEXT כרמי גת צפון</h1>
+            <div class="badge"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6"/></svg>פרויקט במסגרת תכנית מחיר למשתכן</div>
+            <h1><small>י.ח. דמרי</small>דמרי NEXT כרמי גת צפון</h1>
             <p>מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית, בשכונת כרמי גת צפון בקריית גת.</p>
             <div class="hero-actions">
               <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
@@ -322,7 +326,7 @@
         <div class="strip-grid">
           <div class="strip-item">
             <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V11l4-3 4 3v10M13 21V8l6-4v17M17 11h.01M17 15h.01M8 14h.01M8 17h.01"/></svg></div>
-            <div><b>263 יחידות דיור</b><span>בשישה בניינים בני 8–17 קומות</span></div>
+            <div><b>263 דירות במחיר למשתכן</b><span>בשישה בניינים בני 8–17 קומות</span></div>
           </div>
           <div class="strip-item">
             <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12c-3 0-5.5-2.5-5.5-5.5S12 2 12 2s5.5 1.5 5.5 4.5S15 12 12 12zM7 22c0-3 2.2-5 5-5s5 2 5 5"/></svg></div>
@@ -344,28 +348,33 @@
             <h2>על הפרויקט</h2>
           </div>
         </div>
-        <div class="two">
-          <div class="prose">
-            <div class="figures">
-              <div class="figure"><b>263</b><span>יחידות דיור</span></div>
-              <div class="figure"><b>6</b><span>בניינים</span></div>
-              <div class="figure"><b>8–17</b><span>קומות</span></div>
-            </div>
-            <p>בשכונת כרמי גת צפון בקריית גת, דמרי NEXT מציע סביבת מגורים המשלבת מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית.</p>
-            <p>הפרויקט יכלול 263 יחידות דיור בשישה בניינים בני 8–17 קומות, הנבנים במקביל במספר מגרשים. במרכזו יוקם פארק פנימי מטופח, שיהווה מקום למפגש, למשחק ולבילוי משותף. באחד ממגרשי הפרויקט ישולבו גם שטחי מסחר.</p>
-            <h3>מגוון דירות לכל שלב בחיים</h3>
-            <p>תמהיל הדירות כולל דירות בנות 2, 3, 4 ו־5 חדרים, לצד דירות גן ופנטהאוזים — מבחר המאפשר לזוגות צעירים ולמשפחות למצוא את הבית המתאים לצורכיהם. הדירות הקטנות בפרויקט מתאימות גם למי שמחפשים נכס להשקעה.</p>
-            <p>האכלוס צפוי בעוד כשלוש שנים.</p>
-            <h3>אמינות וניסיון</h3>
-            <p>זהו הפרויקט החמישי של י.ח דמרי בכרמי גת. הניסיון המצטבר של החברה בשכונה מהווה יתרון משמעותי והוכחה לאמון ביכולות החברה.</p>
-            <p>חברת דמרי נוסדה ב-1989 על ידי יגאל דמרי ומנוהלת על ידו מאז וגם היום. ב-2004 דמרי הונפקה והפכה לחברה ציבורית, וניירות הערך שלה נסחרים בבורסה לניירות ערך בתל אביב – חברת הנדלן היחידה שנכללת במדד ת״א 35. דמרי נהנית מחוסן פיננסי, מהגבוהים בענף הנדל"ן בישראל, ומחזיקה בעתודות קרקע של עשרות אלפי יחידות שמבטיחים המשך צמיחה והתבססות כחברת הנדל"ן הגדולה והמובילה בישראל בתחום הבניה למגורים.</p>
-          </div>
-          <figure class="pic">
+        <div class="figures">
+          <div class="figure"><b>263</b><span>יחידות דיור</span></div>
+          <div class="figure"><b>6</b><span>בניינים</span></div>
+          <div class="figure"><b>8–17</b><span>קומות</span></div>
+        </div>
+        <div class="prose cols">
+          <p>בשכונת כרמי גת צפון בקריית גת, דמרי NEXT מציע סביבת מגורים המשלבת מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית.</p>
+          <p>הפרויקט יכלול 263 יחידות דיור בשישה בניינים בני 8–17 קומות, הנבנים במקביל במספר מגרשים. במרכזו יוקם פארק פנימי מטופח, שיהווה מקום למפגש, למשחק ולבילוי משותף. באחד ממגרשי הפרויקט ישולבו גם שטחי מסחר.</p>
+          <h3>מגוון דירות לכל שלב בחיים</h3>
+          <p>תמהיל הדירות כולל דירות בנות 2, 3, 4 ו־5 חדרים, לצד דירות גן ופנטהאוזים — מבחר המאפשר לזוגות צעירים ולמשפחות למצוא את הבית המתאים לצורכיהם. הדירות הקטנות בפרויקט מתאימות גם למי שמחפשים נכס להשקעה.</p>
+          <p>האכלוס צפוי בעוד כשלוש שנים.</p>
+          <h3>אמינות וניסיון</h3>
+          <p>זהו הפרויקט החמישי של י.ח דמרי בכרמי גת. הניסיון המצטבר של החברה בשכונה מהווה יתרון משמעותי והוכחה לאמון ביכולות החברה.</p>
+          <p>חברת דמרי נוסדה ב-1989 על ידי יגאל דמרי ומנוהלת על ידו מאז וגם היום. ב-2004 דמרי הונפקה והפכה לחברה ציבורית, וניירות הערך שלה נסחרים בבורסה לניירות ערך בתל אביב – חברת הנדלן היחידה שנכללת במדד ת״א 35. דמרי נהנית מחוסן פיננסי, מהגבוהים בענף הנדל"ן בישראל, ומחזיקה בעתודות קרקע של עשרות אלפי יחידות שמבטיחים המשך צמיחה והתבססות כחברת הנדל"ן הגדולה והמובילה בישראל בתחום הבניה למגורים.</p>
+        </div>
+        <div class="band">
+          <figure>
             <picture>
-              <source type="image/avif" srcset="/assets/img/cgn/park-path-480.avif 480w, /assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w">
-              <img src="/assets/img/cgn/park-path-960.webp" srcset="/assets/img/cgn/park-path-480.webp 480w, /assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w" sizes="(max-width: 1024px) 100vw, 560px" width="960" height="540" alt="הדמיית הפארק הפנימי בין בנייני הפרויקט" loading="lazy">
+              <source type="image/avif" srcset="/assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w">
+              <img src="/assets/img/cgn/park-path-960.webp" srcset="/assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w" sizes="(max-width: 767px) 100vw, 740px" width="960" height="540" alt="הדמיית הפארק הפנימי בין בנייני הפרויקט" loading="lazy">
             </picture>
-            <figcaption>הדמיה: הפארק הפנימי בין הבניינים</figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/cgn/entrance-480.avif 480w, /assets/img/cgn/entrance-960.avif 960w">
+              <img src="/assets/img/cgn/entrance-960.webp" srcset="/assets/img/cgn/entrance-480.webp 480w, /assets/img/cgn/entrance-960.webp 960w" sizes="(max-width: 767px) 100vw, 490px" width="960" height="540" alt="הדמיית הכניסה לבניין ושטחי המסחר" loading="lazy">
+            </picture>
           </figure>
         </div>
       </div>
@@ -379,30 +388,29 @@
             <h2>על השכונה</h2>
           </div>
         </div>
-        <div class="two flip">
-          <div class="prose">
-            <h3>שכונת כרמי גת צפון</h3>
-            <p>בחלק הצפוני של כרמי גת, ושייכת מוניציפלית לקריית גת. כרמי גת כולה היא סיפור הצלחה בקנה מידה לאומי, מתאפיינת בסביבת מגורים צעירה ומשפחתית והיא שכונה מתוכננת, מודרנית, מפותחת ומאוכלסת באלפי משפחות. מאז הקמתה משכה כרמי גת אליה אוכלוסיה איכותית מכל הארץ. בכרמי גת מוסדות חינוך, מסחר, שירותי בריאות, פנאי וספורט.</p>
-            <h3>נגישות ותעסוקה</h3>
-            <ul class="facts">
-              <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20L10 4h4l6 16M12 4v4M12 11v3M12 18v2"/></svg></div><span>נגישות גבוהה לכביש 6 ולכביש 40.</span></li>
-              <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><span>חיבור נוח יחסית למרכז הארץ ולמוקדי תעסוקה אזוריים.</span></li>
-              <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M10 11h4"/></svg></div><span>קרבה לאינטל ולמרכזי תעסוקה נוספים.</span></li>
-              <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zM4 10h16M8 17l-2 4M16 17l2 4M9 13h.01M15 13h.01"/></svg></div><span>בנוסף לתחנת הרכבת של קריית גת, תחנת הרכבת קריית גת צפון נמצאת בתכנון.</span></li>
-            </ul>
-            <h3>אודות קריית גת</h3>
-            <p>קריית גת נוסדה בשנת 1956 כחלק ממדיניות פיזור האוכלוסייה וקליטת העלייה. ראשוני תושביה היו עולים, בעיקר מצפון אפריקה, ובמהלך השנים התפתחה מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים משמעותית. בסוף 2025 מנתה העיר כ־79 אלף תושבים, והיא נמצאת בתנופת גידול נרחבת. קריית גת היא כבר לא פריפריה – העיר נהנית מנגישות גבוהה לעורקי תחבורה מרכזיים המקצרים את המרחק וזמן הנסיעה למרכזי תעסוקה גדולים במרכז הארץ, בירושלים ובאזור אשדוד.</p>
-            <p>מערכת החינוך בעיר מתרחבת בהתאם לגידול האוכלוסייה, וכוללת הקמת בתי ספר וגני ילדים חדשים לצד מסלולי מצוינות בתחומי מדעים, מתמטיקה, סייבר וטכנולוגיה. שיעורי הזכאות לבגרות בבתי הספר הממלכתיים והממלכתיים־דתיים בעיר עומדים, לפי העירייה, על יותר מ־90%.</p>
-            <p>כלכלת קריית גת נשענת על אזורי תעשייה ותעסוקה גדולים, ובראשם פעילות חברת Intel וחברות טכנולוגיה ותעשייה נוספות, שהפכו את העיר למוקד תעסוקה אזורי.</p>
-            <p>בשנים הקרובות מתוכננת המשך הרחבה משמעותית של שכונות המגורים, מוסדות הציבור, המסחר והתעסוקה. חזון העירייה הוא להפוך את קריית גת למרכז אורבני חכם, ירוק וטכנולוגי, כאשר העיר צפויה להמשיך ולגדול במהירות עד סוף העשור.</p>
-          </div>
-          <figure class="pic">
-            <picture>
-              <source type="image/avif" srcset="/assets/img/cgn/aerial-park-480.avif 480w, /assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w">
-              <img src="/assets/img/cgn/aerial-park-960.webp" srcset="/assets/img/cgn/aerial-park-480.webp 480w, /assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w" sizes="(max-width: 1024px) 100vw, 560px" width="960" height="540" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy">
-            </picture>
-            <figcaption>הדמיה: ששת הבניינים סביב הפארק הפנימי</figcaption>
-          </figure>
+        <div class="prose">
+          <h3>שכונת כרמי גת צפון</h3>
+          <p>בחלק הצפוני של כרמי גת, ושייכת מוניציפלית לקריית גת. כרמי גת כולה היא סיפור הצלחה בקנה מידה לאומי, מתאפיינת בסביבת מגורים צעירה ומשפחתית והיא שכונה מתוכננת, מודרנית, מפותחת ומאוכלסת באלפי משפחות. מאז הקמתה משכה כרמי גת אליה אוכלוסיה איכותית מכל הארץ. בכרמי גת מוסדות חינוך, מסחר, שירותי בריאות, פנאי וספורט.</p>
+          <h3>נגישות ותעסוקה</h3>
+        </div>
+        <ul class="facts">
+          <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20L10 4h4l6 16M12 4v4M12 11v3M12 18v2"/></svg></div><span>נגישות גבוהה לכביש 6 ולכביש 40.</span></li>
+          <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><span>חיבור נוח יחסית למרכז הארץ ולמוקדי תעסוקה אזוריים.</span></li>
+          <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M10 11h4"/></svg></div><span>קרבה לאינטל ולמרכזי תעסוקה נוספים.</span></li>
+          <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zM4 10h16M8 17l-2 4M16 17l2 4M9 13h.01M15 13h.01"/></svg></div><span>בנוסף לתחנת הרכבת של קריית גת, תחנת הרכבת קריית גת צפון נמצאת בתכנון.</span></li>
+        </ul>
+        <div class="prose cols">
+          <h3>אודות קריית גת</h3>
+          <p>קריית גת נוסדה בשנת 1956 כחלק ממדיניות פיזור האוכלוסייה וקליטת העלייה. ראשוני תושביה היו עולים, בעיקר מצפון אפריקה, ובמהלך השנים התפתחה מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים משמעותית. בסוף 2025 מנתה העיר כ־79 אלף תושבים, והיא נמצאת בתנופת גידול נרחבת. קריית גת היא כבר לא פריפריה – העיר נהנית מנגישות גבוהה לעורקי תחבורה מרכזיים המקצרים את המרחק וזמן הנסיעה למרכזי תעסוקה גדולים במרכז הארץ, בירושלים ובאזור אשדוד.</p>
+          <p>מערכת החינוך בעיר מתרחבת בהתאם לגידול האוכלוסייה, וכוללת הקמת בתי ספר וגני ילדים חדשים לצד מסלולי מצוינות בתחומי מדעים, מתמטיקה, סייבר וטכנולוגיה. שיעורי הזכאות לבגרות בבתי הספר הממלכתיים והממלכתיים־דתיים בעיר עומדים, לפי העירייה, על יותר מ־90%.</p>
+          <p>כלכלת קריית גת נשענת על אזורי תעשייה ותעסוקה גדולים, ובראשם פעילות חברת Intel וחברות טכנולוגיה ותעשייה נוספות, שהפכו את העיר למוקד תעסוקה אזורי.</p>
+          <p>בשנים הקרובות מתוכננת המשך הרחבה משמעותית של שכונות המגורים, מוסדות הציבור, המסחר והתעסוקה. חזון העירייה הוא להפוך את קריית גת למרכז אורבני חכם, ירוק וטכנולוגי, כאשר העיר צפויה להמשיך ולגדול במהירות עד סוף העשור.</p>
+        </div>
+        <div class="wide">
+          <picture>
+            <source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w">
+            <img src="/assets/img/cgn/aerial-park-1600.webp" srcset="/assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w, /assets/img/cgn/aerial-park-2400.webp 2400w" sizes="(max-width: 1280px) 100vw, 1232px" width="1600" height="900" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy">
+          </picture>
         </div>
       </div>
     </section>
@@ -417,17 +425,17 @@
           <p>הבניינים, הפארק הפנימי, הכניסות ושטחי המסחר, ביום ובלילה. לחיצה על תמונה פותחת אותה במסך מלא.</p>
         </div>
         <div class="gallery-grid" id="gallery-grid">
-          <button type="button" data-full="towers-day" data-cap="מגדלי הפרויקט מהרחוב, ביום"><picture><source type="image/avif" srcset="/assets/img/cgn/towers-day-960.avif 960w, /assets/img/cgn/towers-day-1600.avif 1600w"><img src="/assets/img/cgn/towers-day-960.webp" srcset="/assets/img/cgn/towers-day-960.webp 960w, /assets/img/cgn/towers-day-1600.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 820px" width="960" height="540" alt="מגדלי הפרויקט מהרחוב, ביום" loading="lazy"></picture><span class="cap">מגדלי הפרויקט מהרחוב, ביום</span></button>
-          <button type="button" data-full="towers-night" data-cap="מגדלי הפרויקט מהרחוב, בלילה"><img src="/assets/img/cgn/towers-night-480.webp" srcset="/assets/img/cgn/towers-night-480.webp 480w, /assets/img/cgn/towers-night-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מגדלי הפרויקט מהרחוב, בלילה" loading="lazy"><span class="cap">מגדלי הפרויקט, בלילה</span></button>
-          <button type="button" data-full="entrance" data-cap="הכניסה לבניין ושטחי המסחר בקומת הקרקע"><img src="/assets/img/cgn/entrance-480.webp" srcset="/assets/img/cgn/entrance-480.webp 480w, /assets/img/cgn/entrance-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הכניסה לבניין ושטחי המסחר בקומת הקרקע" loading="lazy"><span class="cap">הכניסה ושטחי המסחר</span></button>
-          <button type="button" data-full="street" data-cap="הבניינים לאורך הרחוב"><img src="/assets/img/cgn/street-480.webp" srcset="/assets/img/cgn/street-480.webp 480w, /assets/img/cgn/street-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הבניינים לאורך הרחוב" loading="lazy"><span class="cap">לאורך הרחוב</span></button>
-          <button type="button" data-full="buildings" data-cap="חזיתות הבניינים והמרפסות"><img src="/assets/img/cgn/buildings-480.webp" srcset="/assets/img/cgn/buildings-480.webp 480w, /assets/img/cgn/buildings-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="חזיתות הבניינים והמרפסות" loading="lazy"><span class="cap">חזיתות ומרפסות</span></button>
-          <button type="button" data-full="aerial-park" data-cap="מבט מלמעלה על ששת הבניינים והפארק הפנימי"><img src="/assets/img/cgn/aerial-park-480.webp" srcset="/assets/img/cgn/aerial-park-480.webp 480w, /assets/img/cgn/aerial-park-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy"><span class="cap">הפארק הפנימי מלמעלה</span></button>
-          <button type="button" data-full="facade" data-cap="חזית שני בניינים מהגינה"><img src="/assets/img/cgn/facade-480.webp" srcset="/assets/img/cgn/facade-480.webp 480w, /assets/img/cgn/facade-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="חזית שני בניינים מהגינה" loading="lazy"><span class="cap">חזית מהגינה</span></button>
-          <button type="button" data-full="park-path" data-cap="שביל בפארק הפנימי בין הבניינים"><img src="/assets/img/cgn/park-path-480.webp" srcset="/assets/img/cgn/park-path-480.webp 480w, /assets/img/cgn/park-path-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="שביל בפארק הפנימי בין הבניינים" loading="lazy"><span class="cap">שביל בפארק</span></button>
-          <button type="button" data-full="aerial-close" data-cap="מבט מלמעלה על גגות הבניינים והמרפסות"><img src="/assets/img/cgn/aerial-close-480.webp" srcset="/assets/img/cgn/aerial-close-480.webp 480w, /assets/img/cgn/aerial-close-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמעלה על גגות הבניינים והמרפסות" loading="lazy"><span class="cap">גגות ומרפסות</span></button>
-          <button type="button" data-full="tower-up" data-cap="מבט מלמטה על אחד הבניינים"><img src="/assets/img/cgn/tower-up-480.webp" srcset="/assets/img/cgn/tower-up-480.webp 480w, /assets/img/cgn/tower-up-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמטה על אחד הבניינים" loading="lazy"><span class="cap">מבט מלמטה</span></button>
-          <button type="button" data-full="night-aerial" data-cap="הפרויקט מלמעלה בלילה"><img src="/assets/img/cgn/night-aerial-480.webp" srcset="/assets/img/cgn/night-aerial-480.webp 480w, /assets/img/cgn/night-aerial-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הפרויקט מלמעלה בלילה" loading="lazy"><span class="cap">הפרויקט בלילה</span></button>
+          <button type="button" data-full="towers-day" data-cap="מגדלי הפרויקט מהרחוב, ביום"><picture><source type="image/avif" srcset="/assets/img/cgn/towers-day-960.avif 960w, /assets/img/cgn/towers-day-1600.avif 1600w"><img src="/assets/img/cgn/towers-day-960.webp" srcset="/assets/img/cgn/towers-day-960.webp 960w, /assets/img/cgn/towers-day-1600.webp 1600w" sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 820px" width="960" height="540" alt="מגדלי הפרויקט מהרחוב, ביום" loading="lazy"></picture></button>
+          <button type="button" data-full="towers-night" data-cap="מגדלי הפרויקט מהרחוב, בלילה"><img src="/assets/img/cgn/towers-night-480.webp" srcset="/assets/img/cgn/towers-night-480.webp 480w, /assets/img/cgn/towers-night-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מגדלי הפרויקט מהרחוב, בלילה" loading="lazy"></button>
+          <button type="button" data-full="entrance" data-cap="הכניסה לבניין ושטחי המסחר בקומת הקרקע"><img src="/assets/img/cgn/entrance-480.webp" srcset="/assets/img/cgn/entrance-480.webp 480w, /assets/img/cgn/entrance-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הכניסה לבניין ושטחי המסחר בקומת הקרקע" loading="lazy"></button>
+          <button type="button" data-full="street" data-cap="הבניינים לאורך הרחוב"><img src="/assets/img/cgn/street-480.webp" srcset="/assets/img/cgn/street-480.webp 480w, /assets/img/cgn/street-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הבניינים לאורך הרחוב" loading="lazy"></button>
+          <button type="button" data-full="buildings" data-cap="חזיתות הבניינים והמרפסות"><img src="/assets/img/cgn/buildings-480.webp" srcset="/assets/img/cgn/buildings-480.webp 480w, /assets/img/cgn/buildings-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="חזיתות הבניינים והמרפסות" loading="lazy"></button>
+          <button type="button" data-full="aerial-park" data-cap="מבט מלמעלה על ששת הבניינים והפארק הפנימי"><img src="/assets/img/cgn/aerial-park-480.webp" srcset="/assets/img/cgn/aerial-park-480.webp 480w, /assets/img/cgn/aerial-park-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy"></button>
+          <button type="button" data-full="facade" data-cap="חזית שני בניינים מהגינה"><img src="/assets/img/cgn/facade-480.webp" srcset="/assets/img/cgn/facade-480.webp 480w, /assets/img/cgn/facade-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="חזית שני בניינים מהגינה" loading="lazy"></button>
+          <button type="button" data-full="park-path" data-cap="שביל בפארק הפנימי בין הבניינים"><img src="/assets/img/cgn/park-path-480.webp" srcset="/assets/img/cgn/park-path-480.webp 480w, /assets/img/cgn/park-path-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="שביל בפארק הפנימי בין הבניינים" loading="lazy"></button>
+          <button type="button" data-full="aerial-close" data-cap="מבט מלמעלה על גגות הבניינים והמרפסות"><img src="/assets/img/cgn/aerial-close-480.webp" srcset="/assets/img/cgn/aerial-close-480.webp 480w, /assets/img/cgn/aerial-close-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמעלה על גגות הבניינים והמרפסות" loading="lazy"></button>
+          <button type="button" data-full="tower-up" data-cap="מבט מלמטה על אחד הבניינים"><img src="/assets/img/cgn/tower-up-480.webp" srcset="/assets/img/cgn/tower-up-480.webp 480w, /assets/img/cgn/tower-up-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="מבט מלמטה על אחד הבניינים" loading="lazy"></button>
+          <button type="button" data-full="night-aerial" data-cap="הפרויקט מלמעלה בלילה"><img src="/assets/img/cgn/night-aerial-480.webp" srcset="/assets/img/cgn/night-aerial-480.webp 480w, /assets/img/cgn/night-aerial-960.webp 960w" sizes="(max-width: 767px) 50vw, 400px" width="480" height="270" alt="הפרויקט מלמעלה בלילה" loading="lazy"></button>
         </div>
       </div>
     </section>
