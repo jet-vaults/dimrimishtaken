@@ -129,22 +129,33 @@
     .prose p:last-child { margin-bottom: 0; }
     .prose h3 { margin: 1.6em 0 .5em; color: var(--brown); }
     .prose h3:first-child { margin-top: 0; }
-    .cols { columns: 2; column-gap: 56px; }
-    .cols p, .cols h3 { break-inside: avoid; }
-    .cols h3 { margin-top: 0; }
-    .band { display: grid; grid-template-columns: 1.5fr 1fr; gap: 22px; margin-top: 44px; }
-    .band figure, .wide { border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
-    .band img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
-    .wide { margin-top: 44px; }
+    .wide { margin-top: 44px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
     .wide img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 45%; }
     .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--brown); font-weight: 700; font-size: 15px; line-height: 1; padding: 9px 14px; border-radius: 3px; margin-bottom: 18px; }
     .badge svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* Figures */
-    .figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 32px; }
-    .figure { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
-    .figure b { display: block; font-size: 40px; line-height: 1; font-weight: 700; margin-bottom: 6px; }
-    .figure span { font-size: 15px; color: var(--brown-muted); }
+    /* About: brand panel beside a render, full text in two columns below */
+    .about-panel { display: grid; grid-template-columns: 1.1fr .9fr; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); min-height: 520px; background: var(--brown); }
+    .panel { color: var(--white); padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .panel .label { font-size: 15px; font-weight: 600; color: var(--lime); margin-bottom: 10px; }
+    .panel h3 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
+    .panel p { font-size: 18px; font-weight: 300; color: rgba(255, 255, 255, 0.9); margin: 18px 0 30px; }
+    .panel .fig { display: grid; grid-template-columns: repeat(3, auto); gap: 32px; justify-content: start; }
+    .panel .fig b { display: block; font-size: 40px; line-height: 1; color: var(--lime); font-weight: 700; margin-bottom: 4px; }
+    .panel .fig span { font-size: 15px; color: rgba(255, 255, 255, 0.8); }
+    .about-panel picture, .about-panel img { width: 100%; height: 100%; }
+    .about-panel img { object-fit: cover; }
+    .about-text { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
+
+    /* Kiryat Gat: city figures strip, text beside a tall render */
+    .city-nums { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 48px; }
+    .city-nums div { padding: 26px 28px; }
+    .city-nums div + div { border-inline-start: 1px solid var(--line); }
+    .city-nums b { display: block; font-size: 44px; line-height: 1; font-weight: 700; margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+    .city-nums span { font-size: 15px; color: var(--brown-muted); }
+    .city-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+    .city-grid figure { border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
+    .city-grid img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; }
 
     /* Neighbourhood: soft field, four fact cards */
     .area { background: #F7F7F2; }
@@ -177,22 +188,16 @@
     .doc span { font-size: 15px; color: var(--brown-muted); }
     .doc .soon { margin-inline-start: auto; font-size: 14px; font-weight: 600; color: var(--brown-muted); background: var(--sand); border-radius: var(--radius-pill); padding: 6px 12px; white-space: nowrap; }
 
-    /* Steps: timeline, circles on a line */
+    /* Steps: two-column list with large numerals */
     .steps { background: #F7F7F2; }
-    .track { counter-reset: stage; display: grid; grid-template-columns: repeat(4, 1fr); gap: 56px 24px; }
-    .step { counter-increment: stage; position: relative; padding-top: 70px; }
-    .step::before { content: ''; position: absolute; top: 22px; inset-inline: -24px; height: 3px; background: var(--lime-line); }
-    .step:nth-child(4n+1)::before { inset-inline-start: 23px; }
-    .step:nth-child(4n)::before { inset-inline-end: calc(100% - 23px); }
-    .step .num {
-      position: absolute; top: 0; inset-inline-start: 0; width: 46px; height: 46px; border-radius: 50%;
-      background: var(--lime); color: var(--brown); display: grid; place-items: center;
-      font-weight: 700; font-size: 20px; box-shadow: 0 0 0 6px #F7F7F2;
-    }
-    .step .num::before { content: counter(stage); }
-    .step h3 { font-size: 21px; margin-bottom: 8px; }
-    .step p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
-    .step .btn { margin-top: 16px; }
+    .stages { counter-reset: stage; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+    .stage { counter-increment: stage; display: grid; grid-template-columns: 72px 1fr; gap: 18px; padding: 24px 0; border-bottom: 1px solid #E3E3D8; align-items: start; }
+    .stage:nth-last-child(-n+2) { border-bottom: 0; }
+    .stage .big { font-size: 56px; line-height: .9; font-weight: 700; color: var(--lime-dark); font-variant-numeric: tabular-nums; }
+    .stage .big::before { content: counter(stage, decimal-leading-zero); }
+    .stage h3 { font-size: 21px; margin-bottom: 8px; }
+    .stage p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
+    .stage .btn { margin-top: 16px; }
     .steps-note { margin-top: 48px; font-size: 15px; font-weight: 300; color: var(--brown-muted); max-width: 760px; }
 
     /* CTA band */
@@ -230,15 +235,17 @@
     .lb-prev { inset-inline-start: 16px; } .lb-next { inset-inline-end: 16px; }
 
     /* Responsive */
-    @media (max-width: 1199px) {
-      .track { grid-template-columns: repeat(2, 1fr); }
-      .step:nth-child(n)::before { inset-inline: -24px; }
-      .step:nth-child(2n+1)::before { inset-inline-start: 23px; }
-      .step:nth-child(2n)::before { inset-inline-end: calc(100% - 23px); }
-    }
     @media (max-width: 1024px) {
       .brand-tag span { display: none; }
       .nav-links { display: none; }
+      .about-panel, .about-text, .city-grid, .stages { grid-template-columns: 1fr; }
+      .about-panel { min-height: 0; }
+      .about-panel img { aspect-ratio: 16 / 9; }
+      .city-nums { grid-template-columns: repeat(2, 1fr); }
+      .city-nums div:nth-child(3) { border-inline-start: 0; }
+      .city-nums div:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .city-grid img { aspect-ratio: 16 / 10; }
+      .stage:nth-last-child(2) { border-bottom: 1px solid #E3E3D8; }
       .facts { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -257,22 +264,23 @@
       .strip-item + .strip-item { border-inline-start: 0; border-top: 1px solid var(--line); }
       section { padding: 60px 0; }
       .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 28px; }
-      .cols { columns: 1; }
-      .band { grid-template-columns: 1fr; gap: 12px; }
+      .panel { padding: 32px 22px; }
+      .panel .fig { gap: 22px; }
+      .panel .fig b { font-size: 32px; }
+      .about-text { gap: 28px; margin-top: 32px; }
+      .city-nums { margin-bottom: 32px; }
+      .city-nums div { padding: 18px 16px; }
+      .city-nums b { font-size: 32px; }
+      .city-grid { gap: 24px; }
       .facts { grid-template-columns: 1fr; gap: 10px; }
       .fact { flex-direction: row; align-items: center; padding: 16px 18px; }
       .wide img { aspect-ratio: 4 / 3; }
       .badge { font-size: 14px; }
-      .figures { gap: 10px; }
-      .figure { padding: 14px 12px; text-align: center; }
-      .figure b { font-size: 30px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .gallery-grid button:first-child { grid-column: span 2; grid-row: auto; }
       .docs { grid-template-columns: 1fr; }
-      .track { grid-template-columns: 1fr; gap: 28px; }
-      .step { padding-top: 0; padding-inline-start: 64px; min-height: 46px; }
-      .step:nth-child(n)::before { top: 46px; bottom: -28px; height: auto; width: 3px; inset-inline: auto; inset-inline-start: 22px; }
-      .step:last-child::before { display: none; }
+      .stage { grid-template-columns: 56px 1fr; gap: 12px; padding: 20px 0; }
+      .stage .big { font-size: 42px; }
       .foot-top { flex-direction: column; align-items: flex-start; }
       .foot-bottom { flex-direction: column; }
       .lightbox figcaption { padding: 12px 16px 18px; }
@@ -291,6 +299,7 @@
       <nav class="nav-links" aria-label="ניווט בעמוד">
         <a href="#about">על הפרויקט</a>
         <a href="#area">על השכונה</a>
+        <a href="#city">קריית גת</a>
         <a href="#gallery">גלריה</a>
         <a href="#files">קבצים להורדה</a>
         <a href="#steps">שלבי התכנית</a>
@@ -352,34 +361,34 @@
             <h2>על הפרויקט</h2>
           </div>
         </div>
-        <div class="figures">
-          <div class="figure"><b>263</b><span>יחידות דיור</span></div>
-          <div class="figure"><b>6</b><span>בניינים</span></div>
-          <div class="figure"><b>8–17</b><span>קומות</span></div>
+        <div class="about-panel">
+          <div class="panel">
+            <div class="label">דמרי NEXT · מחיר למשתכן</div>
+            <h3>מרחב לחיים סביב פארק פנימי</h3>
+            <p>בשכונת כרמי גת צפון בקריית גת, דמרי NEXT מציע סביבת מגורים המשלבת מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית.</p>
+            <div class="fig">
+              <div><b>263</b><span>יחידות דיור</span></div>
+              <div><b>6</b><span>בניינים</span></div>
+              <div><b>8–17</b><span>קומות</span></div>
+            </div>
+          </div>
+          <picture>
+            <source type="image/avif" srcset="/assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w">
+            <img src="/assets/img/cgn/park-path-1600.webp" srcset="/assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w" sizes="(max-width: 1024px) 100vw, 560px" width="1600" height="900" alt="הדמיית הפארק הפנימי בין בנייני הפרויקט" loading="lazy">
+          </picture>
         </div>
-        <div class="prose cols">
-          <p>בשכונת כרמי גת צפון בקריית גת, דמרי NEXT מציע סביבת מגורים המשלבת מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית.</p>
-          <p>הפרויקט יכלול 263 יחידות דיור בשישה בניינים בני 8–17 קומות, הנבנים במקביל במספר מגרשים. במרכזו יוקם פארק פנימי מטופח, שיהווה מקום למפגש, למשחק ולבילוי משותף. באחד ממגרשי הפרויקט ישולבו גם שטחי מסחר.</p>
-          <h3>מגוון דירות לכל שלב בחיים</h3>
-          <p>תמהיל הדירות כולל דירות בנות 2, 3, 4 ו־5 חדרים, לצד דירות גן ופנטהאוזים — מבחר המאפשר לזוגות צעירים ולמשפחות למצוא את הבית המתאים לצורכיהם. הדירות הקטנות בפרויקט מתאימות גם למי שמחפשים נכס להשקעה.</p>
-          <p>האכלוס צפוי בעוד כשלוש שנים.</p>
-          <h3>אמינות וניסיון</h3>
-          <p>זהו הפרויקט החמישי של י.ח דמרי בכרמי גת. הניסיון המצטבר של החברה בשכונה מהווה יתרון משמעותי והוכחה לאמון ביכולות החברה.</p>
-          <p>חברת דמרי נוסדה ב-1989 על ידי יגאל דמרי ומנוהלת על ידו מאז וגם היום. ב-2004 דמרי הונפקה והפכה לחברה ציבורית, וניירות הערך שלה נסחרים בבורסה לניירות ערך בתל אביב – חברת הנדלן היחידה שנכללת במדד ת״א 35. דמרי נהנית מחוסן פיננסי, מהגבוהים בענף הנדל"ן בישראל, ומחזיקה בעתודות קרקע של עשרות אלפי יחידות שמבטיחים המשך צמיחה והתבססות כחברת הנדל"ן הגדולה והמובילה בישראל בתחום הבניה למגורים.</p>
-        </div>
-        <div class="band">
-          <figure>
-            <picture>
-              <source type="image/avif" srcset="/assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w">
-              <img src="/assets/img/cgn/park-path-960.webp" srcset="/assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w" sizes="(max-width: 767px) 100vw, 740px" width="960" height="540" alt="הדמיית הפארק הפנימי בין בנייני הפרויקט" loading="lazy">
-            </picture>
-          </figure>
-          <figure>
-            <picture>
-              <source type="image/avif" srcset="/assets/img/cgn/entrance-480.avif 480w, /assets/img/cgn/entrance-960.avif 960w">
-              <img src="/assets/img/cgn/entrance-960.webp" srcset="/assets/img/cgn/entrance-480.webp 480w, /assets/img/cgn/entrance-960.webp 960w" sizes="(max-width: 767px) 100vw, 490px" width="960" height="540" alt="הדמיית הכניסה לבניין ושטחי המסחר" loading="lazy">
-            </picture>
-          </figure>
+        <div class="about-text prose">
+          <div>
+            <p>הפרויקט יכלול 263 יחידות דיור בשישה בניינים בני 8–17 קומות, הנבנים במקביל במספר מגרשים. במרכזו יוקם פארק פנימי מטופח, שיהווה מקום למפגש, למשחק ולבילוי משותף. באחד ממגרשי הפרויקט ישולבו גם שטחי מסחר.</p>
+            <h3>מגוון דירות לכל שלב בחיים</h3>
+            <p>תמהיל הדירות כולל דירות בנות 2, 3, 4 ו־5 חדרים, לצד דירות גן ופנטהאוזים — מבחר המאפשר לזוגות צעירים ולמשפחות למצוא את הבית המתאים לצורכיהם. הדירות הקטנות בפרויקט מתאימות גם למי שמחפשים נכס להשקעה.</p>
+            <p>האכלוס צפוי בעוד כשלוש שנים.</p>
+          </div>
+          <div>
+            <h3>אמינות וניסיון</h3>
+            <p>זהו הפרויקט החמישי של י.ח דמרי בכרמי גת. הניסיון המצטבר של החברה בשכונה מהווה יתרון משמעותי והוכחה לאמון ביכולות החברה.</p>
+            <p>חברת דמרי נוסדה ב-1989 על ידי יגאל דמרי ומנוהלת על ידו מאז וגם היום. ב-2004 דמרי הונפקה והפכה לחברה ציבורית, וניירות הערך שלה נסחרים בבורסה לניירות ערך בתל אביב – חברת הנדלן היחידה שנכללת במדד ת״א 35. דמרי נהנית מחוסן פיננסי, מהגבוהים בענף הנדל"ן בישראל, ומחזיקה בעתודות קרקע של עשרות אלפי יחידות שמבטיחים המשך צמיחה והתבססות כחברת הנדל"ן הגדולה והמובילה בישראל בתחום הבניה למגורים.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -403,18 +412,43 @@
           <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M10 11h4"/></svg></div><span>קרבה לאינטל ולמרכזי תעסוקה נוספים.</span></li>
           <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zM4 10h16M8 17l-2 4M16 17l2 4M9 13h.01M15 13h.01"/></svg></div><span>בנוסף לתחנת הרכבת של קריית גת, תחנת הרכבת קריית גת צפון נמצאת בתכנון.</span></li>
         </ul>
-        <div class="prose cols">
-          <h3>אודות קריית גת</h3>
-          <p>קריית גת נוסדה בשנת 1956 כחלק ממדיניות פיזור האוכלוסייה וקליטת העלייה. ראשוני תושביה היו עולים, בעיקר מצפון אפריקה, ובמהלך השנים התפתחה מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים משמעותית. בסוף 2025 מנתה העיר כ־79 אלף תושבים, והיא נמצאת בתנופת גידול נרחבת. קריית גת היא כבר לא פריפריה – העיר נהנית מנגישות גבוהה לעורקי תחבורה מרכזיים המקצרים את המרחק וזמן הנסיעה למרכזי תעסוקה גדולים במרכז הארץ, בירושלים ובאזור אשדוד.</p>
-          <p>מערכת החינוך בעיר מתרחבת בהתאם לגידול האוכלוסייה, וכוללת הקמת בתי ספר וגני ילדים חדשים לצד מסלולי מצוינות בתחומי מדעים, מתמטיקה, סייבר וטכנולוגיה. שיעורי הזכאות לבגרות בבתי הספר הממלכתיים והממלכתיים־דתיים בעיר עומדים, לפי העירייה, על יותר מ־90%.</p>
-          <p>כלכלת קריית גת נשענת על אזורי תעשייה ותעסוקה גדולים, ובראשם פעילות חברת Intel וחברות טכנולוגיה ותעשייה נוספות, שהפכו את העיר למוקד תעסוקה אזורי.</p>
-          <p>בשנים הקרובות מתוכננת המשך הרחבה משמעותית של שכונות המגורים, מוסדות הציבור, המסחר והתעסוקה. חזון העירייה הוא להפוך את קריית גת למרכז אורבני חכם, ירוק וטכנולוגי, כאשר העיר צפויה להמשיך ולגדול במהירות עד סוף העשור.</p>
-        </div>
         <div class="wide">
           <picture>
             <source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w">
             <img src="/assets/img/cgn/aerial-park-1600.webp" srcset="/assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w, /assets/img/cgn/aerial-park-2400.webp 2400w" sizes="(max-width: 1280px) 100vw, 1232px" width="1600" height="900" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy">
           </picture>
+        </div>
+      </div>
+    </section>
+
+    <section id="city">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="label">העיר</div>
+            <h2>אודות קריית גת</h2>
+          </div>
+          <p>מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים, בתנופת גידול נרחבת.</p>
+        </div>
+        <div class="city-nums">
+          <div><b>1956</b><span>שנת ייסוד העיר</span></div>
+          <div><b>79,000</b><span>תושבים בסוף 2025</span></div>
+          <div><b>90%+</b><span>זכאות לבגרות בבתי הספר בעיר</span></div>
+          <div><b>Intel</b><span>בראש אזורי התעשייה והתעסוקה</span></div>
+        </div>
+        <div class="city-grid">
+          <div class="prose">
+            <p>קריית גת נוסדה בשנת 1956 כחלק ממדיניות פיזור האוכלוסייה וקליטת העלייה. ראשוני תושביה היו עולים, בעיקר מצפון אפריקה, ובמהלך השנים התפתחה מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים משמעותית. בסוף 2025 מנתה העיר כ־79 אלף תושבים, והיא נמצאת בתנופת גידול נרחבת. קריית גת היא כבר לא פריפריה – העיר נהנית מנגישות גבוהה לעורקי תחבורה מרכזיים המקצרים את המרחק וזמן הנסיעה למרכזי תעסוקה גדולים במרכז הארץ, בירושלים ובאזור אשדוד.</p>
+            <p>מערכת החינוך בעיר מתרחבת בהתאם לגידול האוכלוסייה, וכוללת הקמת בתי ספר וגני ילדים חדשים לצד מסלולי מצוינות בתחומי מדעים, מתמטיקה, סייבר וטכנולוגיה. שיעורי הזכאות לבגרות בבתי הספר הממלכתיים והממלכתיים־דתיים בעיר עומדים, לפי העירייה, על יותר מ־90%.</p>
+            <p>כלכלת קריית גת נשענת על אזורי תעשייה ותעסוקה גדולים, ובראשם פעילות חברת Intel וחברות טכנולוגיה ותעשייה נוספות, שהפכו את העיר למוקד תעסוקה אזורי.</p>
+            <p>בשנים הקרובות מתוכננת המשך הרחבה משמעותית של שכונות המגורים, מוסדות הציבור, המסחר והתעסוקה. חזון העירייה הוא להפוך את קריית גת למרכז אורבני חכם, ירוק וטכנולוגי, כאשר העיר צפויה להמשיך ולגדול במהירות עד סוף העשור.</p>
+          </div>
+          <figure>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/cgn/street-960.avif 960w, /assets/img/cgn/street-1600.avif 1600w">
+              <img src="/assets/img/cgn/street-960.webp" srcset="/assets/img/cgn/street-960.webp 960w, /assets/img/cgn/street-1600.webp 1600w" sizes="(max-width: 1024px) 100vw, 480px" width="960" height="540" alt="הדמיית הרחוב לאורך בנייני הפרויקט" loading="lazy">
+            </picture>
+          </figure>
         </div>
       </div>
     </section>
@@ -470,19 +504,18 @@
             <div class="label">מחיר למשתכן</div>
             <h2>שלבים לתכנית מחיר למשתכן</h2>
           </div>
-          <p>מאישור הזכאות ועד המפתח: כך נראה התהליך, שלב אחרי שלב, לרוכשים בדמרי NEXT כרמי גת צפון.</p>
         </div>
-        <ol class="track">
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>אישור זכאות</h3><p>מוציאים אישור זכאות לתכנית באתר משרד הבינוי והשיכון. האישור הוא תנאי להרשמה להגרלה, וביום בחירת הדירה הוא חייב להיות בתוקף.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>הרשמה להגרלה</h3><p>כשההרשמה לפרויקט נפתחת, נרשמים להגרלה באתר התכנית במועדים שמפרסם המשרד. ההרשמה היא לפרויקט ולמתחם ספציפיים.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>ההגרלה</h3><p>משרד הבינוי והשיכון עורך את ההגרלה ומודיע לכל נרשם אם זכה ומה מיקומו ברשימת הזוכים. לפי המיקום הזה נקבע סדר בחירת הדירות.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>הצגת הפרויקט לזוכים</h3><p>הזוכים מקבלים מדמרי קישור לאתר ייעודי עם כל המידע: תוכניות, מפרטים ומלאי הדירות. זה הזמן להכין רשימת עדיפויות.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>אישור עקרוני למשכנתא</h3><p>עוד לפני בחירת הדירה פונים לבנק לקבלת אישור עקרוני, כדי לדעת איזה מימון עומד לרשותכם ולבחור דירה בביטחון.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>בחירת הדירה</h3><p>במועד שנקבע, לפי סדר הזכייה, בוחרים דירה מתוך המלאי הפנוי. מגיעים עם הודעת הזכייה, אישור זכאות בתוקף ותעודות זהות. הבחירה סופית ומלווה בדמי רצינות שמתקזזים ממחיר הדירה.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>חתימה על חוזה המכר</h3><p>חותמים על ההסכם שאושר על ידי משרד הבינוי והשיכון, מיד לאחר הבחירה או עד 30 יום ממנה. בזכייה זוגית שני בני הזוג חותמים.</p></li>
-          <li class="step"><span class="num" aria-hidden="true"></span><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p>
+        <ol class="stages">
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>אישור זכאות</h3><p>מוציאים אישור זכאות לתכנית באתר משרד הבינוי והשיכון. האישור הוא תנאי להרשמה להגרלה, וביום בחירת הדירה הוא חייב להיות בתוקף.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>הרשמה להגרלה</h3><p>כשההרשמה לפרויקט נפתחת, נרשמים להגרלה באתר התכנית במועדים שמפרסם המשרד. ההרשמה היא לפרויקט ולמתחם ספציפיים.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>ההגרלה</h3><p>משרד הבינוי והשיכון עורך את ההגרלה ומודיע לכל נרשם אם זכה ומה מיקומו ברשימת הזוכים. לפי המיקום הזה נקבע סדר בחירת הדירות.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>הצגת הפרויקט לזוכים</h3><p>הזוכים מקבלים מדמרי קישור לאתר ייעודי עם כל המידע: תוכניות, מפרטים ומלאי הדירות. זה הזמן להכין רשימת עדיפויות.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>אישור עקרוני למשכנתא</h3><p>עוד לפני בחירת הדירה פונים לבנק לקבלת אישור עקרוני, כדי לדעת איזה מימון עומד לרשותכם ולבחור דירה בביטחון.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בחירת הדירה</h3><p>במועד שנקבע, לפי סדר הזכייה, בוחרים דירה מתוך המלאי הפנוי. מגיעים עם הודעת הזכייה, אישור זכאות בתוקף ותעודות זהות. הבחירה סופית ומלווה בדמי רצינות שמתקזזים ממחיר הדירה.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>חתימה על חוזה המכר</h3><p>חותמים על ההסכם שאושר על ידי משרד הבינוי והשיכון, מיד לאחר הבחירה או עד 30 יום ממנה. בזכייה זוגית שני בני הזוג חותמים.</p></div></li>
+          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p>
             <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
-            <a class="btn btn-lime" href="#inventory-url-pending" data-inventory>מלאי דירות</a></li>
+            <a class="btn btn-lime" href="#inventory-url-pending" data-inventory>מלאי דירות</a></div></li>
         </ol>
         <p class="steps-note">המועדים והכללים נקבעים על ידי משרד הבינוי והשיכון ועשויים להשתנות. המידע המחייב הוא זה המתפרסם באתר המשרד, והתיאור כאן נועד להתמצאות כללית בלבד.</p>
       </div>
