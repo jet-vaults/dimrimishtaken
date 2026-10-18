@@ -131,7 +131,12 @@
     .prose h3:first-child { margin-top: 0; }
     .wide { position: relative; margin-top: 44px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
     .wide img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
-    .pin { position: absolute; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%; background: var(--lime); color: var(--brown); font-weight: 700; font-size: 20px; line-height: 1; display: grid; place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); pointer-events: none; }
+    .bmap { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .bmap polygon { fill: rgba(193, 228, 55, 0); stroke: rgba(193, 228, 55, 0); stroke-width: 2.5; vector-effect: non-scaling-stroke; cursor: pointer; outline: none; transition: fill .2s, stroke .2s; }
+    .bmap polygon:hover, .bmap polygon:focus-visible { fill: rgba(193, 228, 55, .42); stroke: var(--lime); }
+    .bmap polygon.on { fill: rgba(193, 228, 55, .55); stroke: #fff; }
+    .pin { position: absolute; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 50%; background: var(--lime); color: var(--brown); font-weight: 700; font-size: 20px; line-height: 1; display: grid; place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35); pointer-events: none; transition: background .2s, color .2s, transform .2s; }
+    .pin.on { background: var(--brown); color: var(--lime); transform: scale(1.12); }
 
     /* About: brand panel beside a render, full text in two columns below */
     .about-panel { display: grid; grid-template-columns: 1.1fr .9fr; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); min-height: 520px; background: var(--brown); }
@@ -396,12 +401,20 @@
             <source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w">
             <img src="/assets/img/cgn/aerial-park-1600.webp" srcset="/assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w, /assets/img/cgn/aerial-park-2400.webp 2400w" sizes="(max-width: 1280px) 100vw, 1232px" width="1600" height="900" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי, ממוספרים 1 עד 6" loading="lazy">
           </picture>
-          <span class="pin" style="left:34%;top:26%" aria-hidden="true">1</span>
-          <span class="pin" style="left:50%;top:26%" aria-hidden="true">6</span>
-          <span class="pin" style="left:64.5%;top:26%" aria-hidden="true">5</span>
-          <span class="pin" style="left:34.5%;top:74%" aria-hidden="true">2</span>
-          <span class="pin" style="left:50%;top:74%" aria-hidden="true">3</span>
-          <span class="pin" style="left:63.5%;top:74%" aria-hidden="true">4</span>
+          <svg class="bmap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="מפת הבניינים: העבירו את העכבר או לחצו על בניין">
+            <polygon points="28.13,13.2 39.49,12.91 40.95,50.29 31.29,51.15 27.23,30.52" data-b="1" tabindex="0" role="button" aria-label="בניין 1"></polygon>
+            <polygon points="28.69,62.12 40.63,61.69 40.71,86.22 28.37,86.36" data-b="2" tabindex="0" role="button" aria-label="בניין 2"></polygon>
+            <polygon points="44.6,62.55 55.56,62.55 55.24,87.09 44.28,87.09" data-b="3" tabindex="0" role="button" aria-label="בניין 3"></polygon>
+            <polygon points="58.08,62.55 70.58,62.55 70.41,86.22 58.08,86.36" data-b="4" tabindex="0" role="button" aria-label="בניין 4"></polygon>
+            <polygon points="58.56,5.12 71.14,4.98 71.31,24.03 68.22,40.48 57.91,40.19" data-b="5" tabindex="0" role="button" aria-label="בניין 5"></polygon>
+            <polygon points="44.85,14.07 55.4,14.07 55.32,38.6 44.76,38.74" data-b="6" tabindex="0" role="button" aria-label="בניין 6"></polygon>
+          </svg>
+          <span class="pin" data-b="1" style="left:34%;top:26%" aria-hidden="true">1</span>
+          <span class="pin" data-b="6" style="left:50%;top:26%" aria-hidden="true">6</span>
+          <span class="pin" data-b="5" style="left:64.5%;top:26%" aria-hidden="true">5</span>
+          <span class="pin" data-b="2" style="left:34.5%;top:74%" aria-hidden="true">2</span>
+          <span class="pin" data-b="3" style="left:50%;top:74%" aria-hidden="true">3</span>
+          <span class="pin" data-b="4" style="left:63.5%;top:74%" aria-hidden="true">4</span>
         </div>
       </div>
     </section>
@@ -575,6 +588,24 @@
       if (Math.abs(dx) > 40) show(dx > 0 ? cur - 1 : cur + 1);
     }, { passive: true });
   })();
+  </script>
+  <script>
+    (function () {
+      var map = document.querySelector('.bmap'); if (!map) return;
+      var polys = map.querySelectorAll('polygon'), pins = document.querySelectorAll('.wide .pin');
+      function pin(b) { return Array.prototype.filter.call(pins, function (p) { return p.dataset.b === b; })[0]; }
+      function setHover(b, on) { var p = pin(b); if (p && !p.classList.contains('sel')) p.classList.toggle('on', on); }
+      function select(b) {
+        polys.forEach(function (pg) { var hit = pg.dataset.b === b && !pg.classList.contains('on'); pg.classList.toggle('on', hit); });
+        pins.forEach(function (p) { var hit = p.dataset.b === b && map.querySelector('polygon.on'); p.classList.toggle('on', !!hit); p.classList.toggle('sel', !!hit); });
+      }
+      polys.forEach(function (pg) {
+        pg.addEventListener('mouseenter', function () { setHover(pg.dataset.b, true); });
+        pg.addEventListener('mouseleave', function () { setHover(pg.dataset.b, false); });
+        pg.addEventListener('click', function () { select(pg.dataset.b); });
+        pg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(pg.dataset.b); } });
+      });
+    })();
   </script>
 </body>
 </html>
