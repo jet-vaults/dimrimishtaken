@@ -129,7 +129,8 @@
     .prose p:last-child { margin-bottom: 0; }
     .prose h3 { margin: 1.6em 0 .5em; color: var(--brown); }
     .prose h3:first-child { margin-top: 0; }
-    .wide { position: relative; margin-top: 44px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
+    .map-title { margin-top: 44px; }
+    .wide { position: relative; margin-top: 16px; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); background: var(--sand); }
     .wide img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
     .bmap { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .bmap polygon { fill: rgba(193, 228, 55, 0); stroke: rgba(193, 228, 55, 0); stroke-width: 2.5; vector-effect: non-scaling-stroke; cursor: pointer; outline: none; transition: fill .2s, stroke .2s; }
@@ -396,6 +397,7 @@
           <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M10 11h4"/></svg></div><span>קרבה לאינטל ולמרכזי תעסוקה נוספים.</span></li>
           <li class="fact"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zM4 10h16M8 17l-2 4M16 17l2 4M9 13h.01M15 13h.01"/></svg></div><span>בנוסף לתחנת הרכבת של קריית גת, תחנת הרכבת קריית גת צפון נמצאת בתכנון.</span></li>
         </ul>
+        <h3 class="map-title">בחרו בניין לצפייה במלאי הדירות</h3>
         <div class="wide">
           <picture>
             <source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w">
@@ -602,7 +604,14 @@
       polys.forEach(function (pg) {
         pg.addEventListener('mouseenter', function () { setHover(pg.dataset.b, true); });
         pg.addEventListener('mouseleave', function () { setHover(pg.dataset.b, false); });
-        pg.addEventListener('click', function () { select(pg.dataset.b); });
+        pg.addEventListener('click', function () {
+          select(pg.dataset.b);
+          // TODO: once the inventory URL is set on the data-inventory links, a click opens the inventory for this building
+          var inv = document.querySelector('[data-inventory]'); var href = inv ? inv.getAttribute('href') : '';
+          if (href && href.indexOf('#inventory-url-pending') !== 0) {
+            window.location.href = href + (href.indexOf('?') > -1 ? '&' : '?') + 'building=' + encodeURIComponent(pg.dataset.b);
+          }
+        });
         pg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(pg.dataset.b); } });
       });
     })();
