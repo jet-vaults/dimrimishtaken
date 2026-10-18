@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דמרי NEXT כרמי גת צפון | מחיר למשתכן | י.ח. דמרי</title>
+  <meta name="description" content="דמרי NEXT בכרמי גת צפון, קריית גת: 263 דירות בשישה בניינים סביב פארק פנימי, במסגרת תכנית מחיר למשתכן. על הפרויקט, על השכונה, גלריה, קבצים להורדה ושלבי התכנית.">
+  <link rel="canonical" href="https://dimrimishtaken.com/carmei-gat-north/">
+  <meta property="og:title" content="דמרי NEXT כרמי גת צפון">
+  <meta property="og:description" content="263 דירות בשישה בניינים סביב פארק פנימי, בשכונת כרמי גת צפון בקריית גת. תכנית מחיר למשתכן.">
+  <meta property="og:image" content="https://dimrimishtaken.com/assets/img/cgn/towers-day-1600.webp">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/ploni-regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="/assets/fonts/ploni-bold.woff" as="font" type="font/woff" crossorigin>
+  <script>document.documentElement.classList.add('js')</script>
+  <style>
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-light.woff") format("woff"); font-weight: 300; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-regular.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-demibold.woff") format("woff"); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: "Ploni"; src: url("/assets/fonts/ploni-bold.woff") format("woff"); font-weight: 700; font-style: normal; font-display: swap; }
+
+    :root {
+      /* Palette taken from the Dimri NEXT Carmei Gat North logo */
+      --ink: #311E17;          /* lettering */
+      --ink-soft: #5E514B;
+      --lime: #C1E437;         /* logo field */
+      --lime-deep: #A9CC2A;    /* hover */
+      --lime-pale: #EEF6C9;    /* light field */
+      --paper: #F7F8F1;        /* reading column */
+      --white: #FFFFFF;
+      --on-dark: rgba(255, 255, 255, 0.86);
+
+      /* Five type steps */
+      --fs-small: 15px;
+      --fs-body: 18px;
+      --fs-h3: 22px;
+      --fs-h2: clamp(34px, 3.4vw, 48px);
+      --fs-fig: clamp(48px, 5vw, 72px);
+
+      --margin: clamp(16px, 2.2vw, 32px);
+      --radius-pill: 50px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      --t-press: 140ms;
+      --t-hover: 180ms;
+      --t-reveal: 800ms;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Ploni", Arial, sans-serif;
+      font-size: var(--fs-body);
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    ul, ol { list-style: none; }
+    h1, h2, h3 { line-height: 1.15; font-weight: 700; text-wrap: balance; }
+    h2 { font-size: var(--fs-h2); }
+    h3 { font-size: var(--fs-h3); }
+    p { max-width: 62ch; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+    ::selection { background: var(--lime); color: var(--ink); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* Buttons: one shape for the whole page */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 48px; padding: 12px 28px; border-radius: var(--radius-pill);
+      font-weight: 700; font-size: var(--fs-body); line-height: 1; white-space: nowrap; border: 0; cursor: pointer;
+      background: var(--lime); color: var(--ink);
+      transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease, color var(--t-hover) ease;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-dark { background: var(--ink); color: var(--white); }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { background: var(--lime-deep); }
+      .btn-dark:hover { background: #1F120D; }
+    }
+    .link {
+      font-weight: 600; text-decoration: underline; text-decoration-color: transparent;
+      text-underline-offset: 0.22em; text-decoration-thickness: 0.08em;
+      transition: text-decoration-color var(--t-hover) ease;
+    }
+    @media (hover: hover) and (pointer: fine) { .link:hover { text-decoration-color: currentColor; } }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 40; background: var(--white); }
+    .top-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; padding-inline: var(--margin); }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .brand img { height: 56px; width: auto; }
+    .brand span { font-size: var(--fs-small); font-weight: 600; color: var(--ink-soft); }
+    .top-nav { display: flex; gap: 26px; font-size: var(--fs-body); font-weight: 600; }
+    .top-nav a { padding-block: 6px; }
+    .top .btn { min-height: 44px; padding: 10px 22px; }
+
+    /* Split stage: reading column (start) + fixed render (end) */
+    .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .read { background: var(--paper); }
+    .stage { position: sticky; top: 76px; height: calc(100svh - 76px); align-self: start; overflow: hidden; background: var(--ink); }
+    .stage picture, .stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .stage img { object-fit: cover; object-position: 50% 60%; opacity: 0; transition: opacity 1600ms ease; }
+    .stage .is-on { opacity: 1; }
+    .stage .is-on img { opacity: 1; }
+    @media (prefers-reduced-motion: no-preference) {
+      .js .stage .is-on img { animation: drift 26s var(--ease-soft) infinite alternate; }
+    }
+    @keyframes drift { from { transform: scale(1); } to { transform: scale(1.07); } }
+
+    .block { padding: clamp(72px, 9vw, 128px) clamp(24px, 5vw, 80px); }
+    .block + .block { padding-top: 0; }
+    .measure { max-width: 600px; }
+
+    /* Hero */
+    .hero { min-height: calc(100svh - 76px); display: flex; flex-direction: column; justify-content: center; }
+    .hero .logo { width: min(320px, 72%); margin-bottom: 40px; }
+    .hero h1 { font-size: var(--fs-h2); margin-bottom: 20px; }
+    .hero .lead { font-size: var(--fs-h3); font-weight: 400; line-height: 1.5; color: var(--ink-soft); max-width: 36ch; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+    /* About: figures then letter-like text */
+    .figures { display: grid; grid-template-columns: repeat(3, auto); gap: 24px 40px; justify-content: start; margin: 36px 0 44px; }
+    .figures b { display: block; font-size: var(--fs-fig); line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .figures span { display: block; margin-top: 6px; font-size: var(--fs-small); color: var(--ink-soft); }
+    .prose p { margin-bottom: 1em; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose h3 { margin: 1.8em 0 .5em; }
+    .inline-pic { margin: 44px 0; }
+    .inline-pic img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+    .inline-pic figcaption { margin-top: 10px; font-size: var(--fs-small); color: var(--ink-soft); }
+
+    /* Area: on a pale lime field, lists not paragraphs where the text is a list */
+    .area { background: var(--lime-pale); }
+    .area .block { padding-top: clamp(72px, 9vw, 128px); }
+    .facts { margin: 1.2em 0 0; display: grid; gap: 10px; }
+    .facts li { display: flex; gap: 14px; align-items: flex-start; }
+    .facts li::before { content: ''; flex: 0 0 12px; width: 12px; height: 12px; margin-top: 10px; background: var(--ink); border-radius: 50%; }
+
+    /* Full-width sections */
+    .full { padding: clamp(80px, 10vw, 160px) var(--margin); }
+    .sec-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px 48px; align-items: end; margin-bottom: clamp(32px, 4vw, 56px); }
+    .sec-head p { color: var(--ink-soft); }
+
+    /* Gallery: one frame whose contents change, thumbnails, lightbox */
+    .frame { position: relative; aspect-ratio: 16 / 9; max-height: 82svh; width: 100%; overflow: hidden; background: var(--ink); cursor: zoom-in; border: 0; padding: 0; display: block; }
+    .frame picture, .frame img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .frame img { object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
+    .frame .is-on, .frame .is-on img { opacity: 1; }
+    .frame-cap { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; font-size: var(--fs-small); color: var(--ink-soft); }
+    .frame-cap b { font-weight: 600; color: var(--ink); }
+    .thumbs { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+    .thumbs button { aspect-ratio: 16 / 9; width: 100%; padding: 0; border: 0; background: var(--paper); cursor: pointer; opacity: .55; transition: opacity var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+    .thumbs button img { width: 100%; height: 100%; object-fit: cover; }
+    .thumbs button.is-on { opacity: 1; }
+    .thumbs button:active { transform: scale(0.97); }
+    @media (hover: hover) and (pointer: fine) { .thumbs button:hover { opacity: 1; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .js .shutter { clip-path: inset(0 0 100% 0); transition: clip-path 1100ms cubic-bezier(0.76, 0, 0.24, 1); }
+      .js .shutter.is-in { clip-path: inset(0); }
+    }
+
+    /* Files: two-ended rows */
+    .files { background: var(--paper); }
+    .rows { max-width: 640px; }
+    .rows li { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 60px; padding: 10px 0; }
+    .rows li + li { margin-top: 4px; }
+    .rows .name { display: flex; align-items: center; gap: 14px; font-weight: 600; }
+    .rows .name::before { content: ''; width: 14px; height: 18px; background: var(--lime); flex: 0 0 14px; }
+    .rows .val { font-size: var(--fs-small); color: var(--ink-soft); white-space: nowrap; }
+    .rows a .val { color: var(--ink); font-weight: 600; }
+
+    /* Steps: a real ordered list, horizontal track on desktop */
+    .steps { background: var(--ink); color: var(--on-dark); }
+    .steps h2, .steps h3 { color: var(--white); }
+    .steps .sec-head p { color: var(--on-dark); }
+    .track { counter-reset: stage; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 56px 32px; }
+    .track li { counter-increment: stage; position: relative; padding-top: 22px; }
+    .track li::before { content: ''; position: absolute; top: 0; inset-inline: 0; height: 6px; background: var(--lime); }
+    .track .num { display: block; font-size: var(--fs-fig); line-height: 1; font-weight: 700; color: var(--lime); font-variant-numeric: tabular-nums; margin-bottom: 14px; }
+    .track .num::before { content: counter(stage); }
+    .track h3 { margin-bottom: 10px; }
+    .track p { line-height: 1.55; }
+    .track .btn { margin-top: 18px; }
+    .steps-note { margin-top: 56px; font-size: var(--fs-small); color: var(--on-dark); max-width: 70ch; }
+
+    /* Closing sentence */
+    .cta { background: var(--lime); color: var(--ink); padding-top: 22svh; padding-bottom: 16svh; }
+    .cta p { font-size: var(--fs-h3); font-weight: 600; max-width: 34ch; line-height: 1.4; margin-bottom: 28px; }
+
+    /* Footer, same furniture as the home page */
+    footer { background: var(--ink); color: var(--white); padding: 56px var(--margin) 28px; }
+    .foot-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 32px; }
+    .foot-top img { height: 48px; width: auto; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; font-size: var(--fs-small); font-weight: 600; }
+    .foot-links a { opacity: .85; transition: opacity .2s; } .foot-links a:hover { opacity: 1; text-decoration: underline; }
+    .social { display: flex; gap: 10px; }
+    .social a { width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: grid; place-items: center; transition: background .2s; }
+    .social a:hover { background: var(--lime); }
+    .social a:hover svg { fill: var(--ink); }
+    .social svg { width: 17px; height: 17px; fill: var(--white); transition: fill .2s; }
+    .foot-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; font-size: var(--fs-small); font-weight: 300; opacity: .8; }
+    .foot-credit { margin-top: 22px; padding-top: 16px; text-align: center; font-size: var(--fs-small); font-weight: 300; opacity: .7; }
+    .foot-credit a { font-weight: 600; opacity: 1; } .foot-credit a:hover { text-decoration: underline; }
+
+    /* Lightbox */
+    .lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100dvh; width: 100vw; height: 100dvh; }
+    .lightbox::backdrop { background: rgba(20, 12, 9, 0.94); }
+    .lightbox figure { position: relative; width: 100%; height: 100%; display: grid; grid-template-rows: 1fr auto; }
+    .lightbox img { width: 100%; height: 100%; object-fit: contain; }
+    .lightbox figcaption { color: var(--on-dark); text-align: center; padding: 14px 72px 22px; font-size: var(--fs-small); }
+    .lb-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.14); color: var(--white); cursor: pointer; display: grid; place-items: center; transition: background var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+    .lb-btn:active { transform: scale(0.94); }
+    .lb-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .lb-close { top: 16px; inset-inline-start: 16px; }
+    .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); }
+    .lb-prev { inset-inline-start: 16px; } .lb-next { inset-inline-end: 16px; }
+    .lb-prev:active, .lb-next:active { transform: translateY(-50%) scale(0.94); }
+    @media (hover: hover) and (pointer: fine) { .lb-btn:hover { background: rgba(255, 255, 255, 0.3); } }
+
+    /* Motion: hero rise, reveals, row-by-row */
+    @media (prefers-reduced-motion: no-preference) {
+      .js [data-rise] { opacity: 0; transform: translateY(18px); animation: rise var(--t-reveal) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms + 120ms); }
+      .js [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+      .js [data-reveal].is-in { opacity: 1; transform: none; }
+    }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    /* Tablet and phone */
+    @media (max-width: 1023px) {
+      .top-nav { display: none; }
+      .split { grid-template-columns: 1fr; }
+      .stage { position: relative; top: auto; height: 52svh; min-height: 320px; order: -1; }
+      .read { margin-top: -24px; position: relative; }
+      .hero { min-height: 0; padding-top: 40px; }
+      .hero .logo { width: min(260px, 64%); margin-bottom: 28px; }
+      .sec-head { grid-template-columns: 1fr; }
+      .thumbs { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 767px) {
+      body { font-size: 17px; }
+      :root { --fs-h3: 21px; }
+      .top-inner { height: 68px; }
+      .brand img { height: 48px; }
+      .brand span { display: none; }
+      .top .btn { padding: 10px 18px; font-size: 16px; }
+      .stage { top: auto; height: 48svh; }
+      .figures { gap: 20px 24px; }
+      .thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .rows li { min-height: 56px; }
+      .track { grid-template-columns: 1fr; gap: 40px; }
+      .track li { padding-top: 0; padding-inline-start: 22px; }
+      .track li::before { top: 0; bottom: 0; inset-inline: auto 0; width: 6px; height: auto; inset-inline-start: 0; }
+      .track .num { font-size: 44px; }
+      .cta { padding-top: 18svh; padding-bottom: 14svh; }
+      .foot-top, .foot-bottom { flex-direction: column; align-items: flex-start; }
+      .lightbox figcaption { padding: 12px 16px 18px; }
+      .lb-prev, .lb-next { top: auto; bottom: 64px; transform: none; }
+      .lb-prev:active, .lb-next:active { transform: scale(0.94); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="/carmei-gat-north/" aria-label="דמרי NEXT כרמי גת צפון">
+        <img src="/assets/img/cgn/next-logo-320.webp" srcset="/assets/img/cgn/next-logo-320.webp 320w, /assets/img/cgn/next-logo-640.webp 640w" sizes="100px" alt="דמרי NEXT כרמי גת צפון" width="320" height="181">
+        <span>מחיר למשתכן · י.ח. דמרי</span>
+      </a>
+      <nav class="top-nav" aria-label="ניווט בעמוד">
+        <a href="#about">על הפרויקט</a>
+        <a href="#area">על השכונה</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#files">קבצים</a>
+        <a href="#steps">שלבי התכנית</a>
+      </nav>
+      <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
+      <a class="btn" href="#inventory-url-pending" data-inventory>מלאי דירות</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="split">
+      <div class="read">
+
+        <section class="hero block" id="top" data-stage="towers">
+          <img class="logo" src="/assets/img/cgn/next-logo-640.webp" srcset="/assets/img/cgn/next-logo-640.webp 640w, /assets/img/cgn/next-logo-960.webp 960w" sizes="(max-width: 1023px) 260px, 320px" alt="" width="640" height="361" fetchpriority="high" data-rise style="--i:0">
+          <h1 data-rise style="--i:1">דמרי NEXT<br>כרמי גת צפון</h1>
+          <p class="lead" data-rise style="--i:2">מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית, בשכונת כרמי גת צפון בקריית גת.</p>
+          <div class="hero-actions" data-rise style="--i:3">
+            <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
+            <a class="btn" href="#inventory-url-pending" data-inventory>מלאי דירות</a>
+            <a class="link" href="#about">על הפרויקט</a>
+          </div>
+        </section>
+
+        <section class="block prose" id="about" data-stage="park">
+          <h2 data-reveal>על הפרויקט</h2>
+          <div class="figures" data-reveal style="--i:1">
+            <div><b>263</b><span>יחידות דיור</span></div>
+            <div><b>6</b><span>בניינים</span></div>
+            <div><b>8–17</b><span>קומות</span></div>
+          </div>
+          <div class="measure" data-reveal style="--i:2">
+            <p>בשכונת כרמי גת צפון בקריית גת, דמרי NEXT מציע סביבת מגורים המשלבת מרחב לחיים, פארק פנימי ואווירה משפחתית וקהילתית.</p>
+            <p>הפרויקט יכלול 263 יחידות דיור בשישה בניינים בני 8–17 קומות, הנבנים במקביל במספר מגרשים. במרכזו יוקם פארק פנימי מטופח, שיהווה מקום למפגש, למשחק ולבילוי משותף. באחד ממגרשי הפרויקט ישולבו גם שטחי מסחר.</p>
+            <h3>מגוון דירות לכל שלב בחיים</h3>
+            <p>תמהיל הדירות כולל דירות בנות 2, 3, 4 ו־5 חדרים, לצד דירות גן ופנטהאוזים — מבחר המאפשר לזוגות צעירים ולמשפחות למצוא את הבית המתאים לצורכיהם. הדירות הקטנות בפרויקט מתאימות גם למי שמחפשים נכס להשקעה.</p>
+            <p>האכלוס צפוי בעוד כשלוש שנים.</p>
+          </div>
+          <figure class="inline-pic measure" data-reveal>
+            <picture>
+              <source type="image/avif" srcset="/assets/img/cgn/entrance-480.avif 480w, /assets/img/cgn/entrance-960.avif 960w, /assets/img/cgn/entrance-1600.avif 1600w">
+              <img src="/assets/img/cgn/entrance-960.webp" srcset="/assets/img/cgn/entrance-480.webp 480w, /assets/img/cgn/entrance-960.webp 960w, /assets/img/cgn/entrance-1600.webp 1600w" sizes="(max-width: 1023px) 100vw, 600px" width="960" height="540" alt="הדמיית הכניסה לבניין ושטחי המסחר בקומת הקרקע" loading="lazy">
+            </picture>
+            <figcaption>הדמיה: הכניסה לבניין ושטחי המסחר בקומת הקרקע</figcaption>
+          </figure>
+          <div class="measure" data-reveal>
+            <h3 style="margin-top:0">אמינות וניסיון</h3>
+            <p>זהו הפרויקט החמישי של י.ח דמרי בכרמי גת. הניסיון המצטבר של החברה בשכונה מהווה יתרון משמעותי והוכחה לאמון ביכולות החברה.</p>
+            <p>חברת דמרי נוסדה ב-1989 על ידי יגאל דמרי ומנוהלת על ידו מאז וגם היום. ב-2004 דמרי הונפקה והפכה לחברה ציבורית, וניירות הערך שלה נסחרים בבורסה לניירות ערך בתל אביב – חברת הנדלן היחידה שנכללת במדד ת״א 35. דמרי נהנית מחוסן פיננסי, מהגבוהים בענף הנדל"ן בישראל, ומחזיקה בעתודות קרקע של עשרות אלפי יחידות שמבטיחים המשך צמיחה והתבססות כחברת הנדל"ן הגדולה והמובילה בישראל בתחום הבניה למגורים.</p>
+          </div>
+        </section>
+
+        <section class="area" id="area" data-stage="aerial">
+          <div class="block prose">
+            <h2 data-reveal>על השכונה</h2>
+            <div class="measure" data-reveal style="--i:1">
+              <h3>שכונת כרמי גת צפון</h3>
+              <p>בחלק הצפוני של כרמי גת, ושייכת מוניציפלית לקריית גת. כרמי גת כולה היא סיפור הצלחה בקנה מידה לאומי, מתאפיינת בסביבת מגורים צעירה ומשפחתית והיא שכונה מתוכננת, מודרנית, מפותחת ומאוכלסת באלפי משפחות. מאז הקמתה משכה כרמי גת אליה אוכלוסיה איכותית מכל הארץ. בכרמי גת מוסדות חינוך, מסחר, שירותי בריאות, פנאי וספורט.</p>
+              <h3>נגישות ותעסוקה</h3>
+              <ul class="facts">
+                <li>נגישות גבוהה לכביש 6 ולכביש 40.</li>
+                <li>חיבור נוח יחסית למרכז הארץ ולמוקדי תעסוקה אזוריים.</li>
+                <li>קרבה לאינטל ולמרכזי תעסוקה נוספים.</li>
+                <li>בנוסף לתחנת הרכבת של קריית גת, תחנת הרכבת קריית גת צפון נמצאת בתכנון.</li>
+              </ul>
+            </div>
+            <div class="measure" data-reveal>
+              <h3>אודות קריית גת</h3>
+              <p>קריית גת נוסדה בשנת 1956 כחלק ממדיניות פיזור האוכלוסייה וקליטת העלייה. ראשוני תושביה היו עולים, בעיקר מצפון אפריקה, ובמהלך השנים התפתחה מעיירת פיתוח לעיר תעשייה, תעסוקה ומגורים משמעותית. בסוף 2025 מנתה העיר כ־79 אלף תושבים, והיא נמצאת בתנופת גידול נרחבת. קריית גת היא כבר לא פריפריה – העיר נהנית מנגישות גבוהה לעורקי תחבורה מרכזיים המקצרים את המרחק וזמן הנסיעה למרכזי תעסוקה גדולים במרכז הארץ, בירושלים ובאזור אשדוד.</p>
+              <p>מערכת החינוך בעיר מתרחבת בהתאם לגידול האוכלוסייה, וכוללת הקמת בתי ספר וגני ילדים חדשים לצד מסלולי מצוינות בתחומי מדעים, מתמטיקה, סייבר וטכנולוגיה. שיעורי הזכאות לבגרות בבתי הספר הממלכתיים והממלכתיים־דתיים בעיר עומדים, לפי העירייה, על יותר מ־90%.</p>
+              <p>כלכלת קריית גת נשענת על אזורי תעשייה ותעסוקה גדולים, ובראשם פעילות חברת Intel וחברות טכנולוגיה ותעשייה נוספות, שהפכו את העיר למוקד תעסוקה אזורי.</p>
+              <p>בשנים הקרובות מתוכננת המשך הרחבה משמעותית של שכונות המגורים, מוסדות הציבור, המסחר והתעסוקה. חזון העירייה הוא להפוך את קריית גת למרכז אורבני חכם, ירוק וטכנולוגי, כאשר העיר צפויה להמשיך ולגדול במהירות עד סוף העשור.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <aside class="stage" aria-hidden="true">
+        <picture class="is-on" data-stage-img="towers">
+          <source type="image/avif" srcset="/assets/img/cgn/towers-day-960.avif 960w, /assets/img/cgn/towers-day-1600.avif 1600w, /assets/img/cgn/towers-day-2400.avif 2400w">
+          <img src="/assets/img/cgn/towers-day-1600.webp" srcset="/assets/img/cgn/towers-day-960.webp 960w, /assets/img/cgn/towers-day-1600.webp 1600w, /assets/img/cgn/towers-day-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, 50vw" width="1600" height="900" alt="" fetchpriority="high" style="object-position: 42% 55%">
+        </picture>
+        <picture data-stage-img="park">
+          <source type="image/avif" srcset="/assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w, /assets/img/cgn/park-path-2400.avif 2400w">
+          <img src="/assets/img/cgn/park-path-1600.webp" srcset="/assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w, /assets/img/cgn/park-path-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, 50vw" width="1600" height="900" alt="" loading="lazy" style="object-position: 45% 50%">
+        </picture>
+        <picture data-stage-img="aerial">
+          <source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w">
+          <img src="/assets/img/cgn/aerial-park-1600.webp" srcset="/assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w, /assets/img/cgn/aerial-park-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, 50vw" width="1600" height="900" alt="" loading="lazy" style="object-position: 40% 50%">
+        </picture>
+      </aside>
+    </div>
+
+    <section class="full" id="gallery">
+      <div class="sec-head">
+        <h2 data-reveal>גלריה</h2>
+        <p data-reveal style="--i:1">הדמיות הפרויקט: הבניינים, הפארק הפנימי, הכניסות ושטחי המסחר, ביום ובלילה. לחיצה על התמונה פותחת אותה במסך מלא.</p>
+      </div>
+      <button class="frame shutter" id="frame" type="button" aria-label="פתיחת התמונה במסך מלא" data-reveal>
+        <picture class="is-on" data-i="0"><source type="image/avif" srcset="/assets/img/cgn/towers-day-960.avif 960w, /assets/img/cgn/towers-day-1600.avif 1600w, /assets/img/cgn/towers-day-2400.avif 2400w"><img src="/assets/img/cgn/towers-day-1600.webp" srcset="/assets/img/cgn/towers-day-960.webp 960w, /assets/img/cgn/towers-day-1600.webp 1600w, /assets/img/cgn/towers-day-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="מגדלי הפרויקט מהרחוב, ביום" loading="lazy"></picture>
+        <picture data-i="1"><source type="image/avif" srcset="/assets/img/cgn/towers-night-960.avif 960w, /assets/img/cgn/towers-night-1600.avif 1600w, /assets/img/cgn/towers-night-2400.avif 2400w"><img src="/assets/img/cgn/towers-night-1600.webp" srcset="/assets/img/cgn/towers-night-960.webp 960w, /assets/img/cgn/towers-night-1600.webp 1600w, /assets/img/cgn/towers-night-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="מגדלי הפרויקט מהרחוב, בלילה" loading="lazy"></picture>
+        <picture data-i="2"><source type="image/avif" srcset="/assets/img/cgn/entrance-960.avif 960w, /assets/img/cgn/entrance-1600.avif 1600w, /assets/img/cgn/entrance-2400.avif 2400w"><img src="/assets/img/cgn/entrance-1600.webp" srcset="/assets/img/cgn/entrance-960.webp 960w, /assets/img/cgn/entrance-1600.webp 1600w, /assets/img/cgn/entrance-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="הכניסה לבניין ושטחי המסחר בקומת הקרקע" loading="lazy"></picture>
+        <picture data-i="3"><source type="image/avif" srcset="/assets/img/cgn/street-960.avif 960w, /assets/img/cgn/street-1600.avif 1600w, /assets/img/cgn/street-2400.avif 2400w"><img src="/assets/img/cgn/street-1600.webp" srcset="/assets/img/cgn/street-960.webp 960w, /assets/img/cgn/street-1600.webp 1600w, /assets/img/cgn/street-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="הבניינים לאורך הרחוב" loading="lazy"></picture>
+        <picture data-i="4"><source type="image/avif" srcset="/assets/img/cgn/buildings-960.avif 960w, /assets/img/cgn/buildings-1600.avif 1600w, /assets/img/cgn/buildings-2400.avif 2400w"><img src="/assets/img/cgn/buildings-1600.webp" srcset="/assets/img/cgn/buildings-960.webp 960w, /assets/img/cgn/buildings-1600.webp 1600w, /assets/img/cgn/buildings-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="חזיתות הבניינים והמרפסות" loading="lazy"></picture>
+        <picture data-i="5"><source type="image/avif" srcset="/assets/img/cgn/aerial-park-960.avif 960w, /assets/img/cgn/aerial-park-1600.avif 1600w, /assets/img/cgn/aerial-park-2400.avif 2400w"><img src="/assets/img/cgn/aerial-park-1600.webp" srcset="/assets/img/cgn/aerial-park-960.webp 960w, /assets/img/cgn/aerial-park-1600.webp 1600w, /assets/img/cgn/aerial-park-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="מבט מלמעלה על ששת הבניינים והפארק הפנימי" loading="lazy"></picture>
+        <picture data-i="6"><source type="image/avif" srcset="/assets/img/cgn/facade-960.avif 960w, /assets/img/cgn/facade-1600.avif 1600w, /assets/img/cgn/facade-2400.avif 2400w"><img src="/assets/img/cgn/facade-1600.webp" srcset="/assets/img/cgn/facade-960.webp 960w, /assets/img/cgn/facade-1600.webp 1600w, /assets/img/cgn/facade-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="חזית שני בניינים מהגינה" loading="lazy"></picture>
+        <picture data-i="7"><source type="image/avif" srcset="/assets/img/cgn/park-path-960.avif 960w, /assets/img/cgn/park-path-1600.avif 1600w, /assets/img/cgn/park-path-2400.avif 2400w"><img src="/assets/img/cgn/park-path-1600.webp" srcset="/assets/img/cgn/park-path-960.webp 960w, /assets/img/cgn/park-path-1600.webp 1600w, /assets/img/cgn/park-path-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="שביל בפארק הפנימי בין הבניינים" loading="lazy"></picture>
+        <picture data-i="8"><source type="image/avif" srcset="/assets/img/cgn/aerial-close-960.avif 960w, /assets/img/cgn/aerial-close-1600.avif 1600w, /assets/img/cgn/aerial-close-2400.avif 2400w"><img src="/assets/img/cgn/aerial-close-1600.webp" srcset="/assets/img/cgn/aerial-close-960.webp 960w, /assets/img/cgn/aerial-close-1600.webp 1600w, /assets/img/cgn/aerial-close-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="מבט מלמעלה על גגות הבניינים והמרפסות" loading="lazy"></picture>
+        <picture data-i="9"><source type="image/avif" srcset="/assets/img/cgn/tower-up-960.avif 960w, /assets/img/cgn/tower-up-1600.avif 1600w, /assets/img/cgn/tower-up-2400.avif 2400w"><img src="/assets/img/cgn/tower-up-1600.webp" srcset="/assets/img/cgn/tower-up-960.webp 960w, /assets/img/cgn/tower-up-1600.webp 1600w, /assets/img/cgn/tower-up-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="מבט מלמטה על אחד הבניינים" loading="lazy"></picture>
+        <picture data-i="10"><source type="image/avif" srcset="/assets/img/cgn/night-aerial-960.avif 960w, /assets/img/cgn/night-aerial-1600.avif 1600w, /assets/img/cgn/night-aerial-2400.avif 2400w"><img src="/assets/img/cgn/night-aerial-1600.webp" srcset="/assets/img/cgn/night-aerial-960.webp 960w, /assets/img/cgn/night-aerial-1600.webp 1600w, /assets/img/cgn/night-aerial-2400.webp 2400w" sizes="(max-width: 1023px) 100vw, calc(100vw - 64px)" width="1600" height="900" alt="הפרויקט מלמעלה בלילה" loading="lazy"></picture>
+      </button>
+      <div class="frame-cap"><b id="frame-cap">מגדלי הפרויקט מהרחוב, ביום</b><span id="frame-count">1 / 11</span></div>
+      <div class="thumbs" id="thumbs" role="tablist" aria-label="בחירת תמונה"></div>
+    </section>
+
+    <section class="full files" id="files">
+      <div class="sec-head">
+        <h2 data-reveal>קבצים להורדה</h2>
+        <p data-reveal style="--i:1">חוברת הפרויקט, תוכניות הדירות והמסמכים יעלו לכאן לקראת פתיחת ההרשמה. עד אז הרשימה מסומנת ״בקרוב״.</p>
+      </div>
+      <ul class="rows" data-reveal>
+        <li><span class="name">חוברת הפרויקט</span><span class="val">בקרוב</span></li>
+        <li><span class="name">תוכניות הדירות</span><span class="val">בקרוב</span></li>
+        <li><span class="name">מפרט טכני</span><span class="val">בקרוב</span></li>
+        <li><span class="name">הסכם מכר ונספחים</span><span class="val">בקרוב</span></li>
+        <li><span class="name">מחירון הדירות</span><span class="val">בקרוב</span></li>
+      </ul>
+    </section>
+
+    <section class="full steps" id="steps">
+      <div class="sec-head">
+        <h2 data-reveal>שלבים לתכנית מחיר למשתכן</h2>
+        <p data-reveal style="--i:1">מאישור הזכאות ועד המפתח: כך נראה התהליך, שלב אחרי שלב, לרוכשים בדמרי NEXT כרמי גת צפון.</p>
+      </div>
+      <ol class="track">
+        <li data-reveal style="--i:0"><span class="num" aria-hidden="true"></span><h3>אישור זכאות</h3><p>מוציאים אישור זכאות לתכנית באתר משרד הבינוי והשיכון. האישור הוא תנאי להרשמה להגרלה, וביום בחירת הדירה הוא חייב להיות בתוקף.</p></li>
+        <li data-reveal style="--i:1"><span class="num" aria-hidden="true"></span><h3>הרשמה להגרלה</h3><p>כשההרשמה לפרויקט נפתחת, נרשמים להגרלה באתר התכנית במועדים שמפרסם המשרד. ההרשמה היא לפרויקט ולמתחם ספציפיים.</p></li>
+        <li data-reveal style="--i:2"><span class="num" aria-hidden="true"></span><h3>ההגרלה</h3><p>משרד הבינוי והשיכון עורך את ההגרלה ומודיע לכל נרשם אם זכה ומה מיקומו ברשימת הזוכים. לפי המיקום הזה נקבע סדר בחירת הדירות.</p></li>
+        <li data-reveal style="--i:3"><span class="num" aria-hidden="true"></span><h3>הצגת הפרויקט לזוכים</h3><p>הזוכים מקבלים מדמרי קישור לאתר ייעודי עם כל המידע: תוכניות, מפרטים ומלאי הדירות. זה הזמן להכין רשימת עדיפויות.</p></li>
+        <li data-reveal style="--i:0"><span class="num" aria-hidden="true"></span><h3>אישור עקרוני למשכנתא</h3><p>עוד לפני בחירת הדירה פונים לבנק לקבלת אישור עקרוני, כדי לדעת איזה מימון עומד לרשותכם ולבחור דירה בביטחון.</p></li>
+        <li data-reveal style="--i:1"><span class="num" aria-hidden="true"></span><h3>בחירת הדירה</h3><p>במועד שנקבע, לפי סדר הזכייה, בוחרים דירה מתוך המלאי הפנוי. מגיעים עם הודעת הזכייה, אישור זכאות בתוקף ותעודות זהות. הבחירה סופית ומלווה בדמי רצינות שמתקזזים ממחיר הדירה.</p></li>
+        <li data-reveal style="--i:2"><span class="num" aria-hidden="true"></span><h3>חתימה על חוזה המכר</h3><p>חותמים על ההסכם שאושר על ידי משרד הבינוי והשיכון, מיד לאחר הבחירה או עד 30 יום ממנה. בזכייה זוגית שני בני הזוג חותמים.</p></li>
+        <li data-reveal style="--i:3"><span class="num" aria-hidden="true"></span><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p>
+          <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
+          <a class="btn" href="#inventory-url-pending" data-inventory>מלאי דירות</a></li>
+      </ol>
+      <p class="steps-note" data-reveal>המועדים והכללים נקבעים על ידי משרד הבינוי והשיכון ועשויים להשתנות. המידע המחייב הוא זה המתפרסם באתר המשרד, והתיאור כאן נועד להתמצאות כללית בלבד.</p>
+    </section>
+
+    <section class="full cta">
+      <p data-reveal>רוצים לראות אילו דירות פנויות בדמרי NEXT כרמי גת צפון?</p>
+      <!-- TODO: replace the placeholder href with the Carmei Gat North inventory URL -->
+      <a class="btn btn-dark" href="#inventory-url-pending" data-inventory data-reveal style="--i:1">מלאי דירות</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-top">
+      <a href="https://www.dimri.co.il/" target="_blank" rel="noopener"><img src="/assets/img/dimri-logo-white.svg" alt="י.ח. דמרי" width="173" height="60"></a>
+      <nav class="foot-links" aria-label="קישורים">
+        <a href="/">דמרי מחיר למשתכן</a>
+        <a href="https://www.dimri.co.il/" target="_blank" rel="noopener">אתר החברה</a>
+        <a href="https://www.dimri.co.il/privacy-policy-statement" target="_blank" rel="noopener">הצהרת פרטיות</a>
+        <a href="https://www.dimri.co.il/website-accessibility" target="_blank" rel="noopener">הצהרת נגישות</a>
+        <a href="https://www.dimri.co.il/terms-of-use" target="_blank" rel="noopener">תנאי שימוש</a>
+      </nav>
+      <div class="social">
+        <a href="https://www.facebook.com/share/1HWkxQ4md7/" target="_blank" rel="noopener" aria-label="פייסבוק"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a>
+        <a href="https://www.instagram.com/y.h.dimri" target="_blank" rel="noopener" aria-label="אינסטגרם"><svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.9-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21 8.2c-.1-1.5-.4-2.8-1.5-3.9S17.1 2.9 15.6 2.8c-1.5-.1-6.1-.1-7.6 0-1.5.1-2.8.4-3.9 1.5S2.7 6.7 2.6 8.2c-.1 1.5-.1 6.1 0 7.6.1 1.5.4 2.8 1.5 3.9s2.4 1.4 3.9 1.5c1.5.1 6.1.1 7.6 0 1.5-.1 2.8-.4 3.9-1.5s1.4-2.4 1.5-3.9c.1-1.5.1-6.1 0-7.6zm-2 9.3a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3A3 3 0 0 1 6.7 5c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4A3 3 0 0 1 19 6.7c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/yh-dimri/" target="_blank" rel="noopener" aria-label="לינקדאין"><svg viewBox="0 0 24 24"><path d="M6.9 21H3.3V9h3.6v12zM5.1 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM21 21h-3.6v-5.8c0-1.4 0-3.2-1.9-3.2s-2.2 1.5-2.2 3.1V21H9.7V9h3.5v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.7 0 4.3 2.4 4.3 5.6V21z"/></svg></a>
+        <a href="https://www.tiktok.com/@y.h.dimri" target="_blank" rel="noopener" aria-label="טיקטוק"><svg viewBox="0 0 24 24"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-1.8-2.5V9.7a5.7 5.7 0 1 0 4.9 5.7V9.1a7.3 7.3 0 0 0 4.3 1.4V7.4a4.3 4.3 0 0 1-3.2-1.6z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 י.ח. דמרי בנייה ופיתוח בע״מ. כל הזכויות שמורות.</span>
+      <span>ט.ל.ח. ההדמיות להמחשה בלבד. המידע המחייב הוא זה המופיע באתר משרד הבינוי והשיכון.</span>
+    </div>
+    <div class="foot-credit"><span dir="ltr">Powered by <a href="https://einstein-web.co.il" target="_blank" rel="noopener">einstein-web</a></span></div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="גלריה במסך מלא">
+    <figure>
+      <img id="lb-img" src="" alt="" width="2400" height="1350">
+      <figcaption id="lb-cap"></figcaption>
+      <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="סגירה"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="התמונה הקודמת"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="התמונה הבאה"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    </figure>
+  </dialog>
+
+  <script>
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Reveal once */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+      document.querySelectorAll('[data-reveal], .shutter').forEach(function (el) { io.observe(el); });
+
+      /* Fixed stage follows the section being read */
+      var stagePics = document.querySelectorAll('[data-stage-img]');
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var key = e.target.getAttribute('data-stage');
+          stagePics.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-stage-img') === key); });
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+      document.querySelectorAll('[data-stage]').forEach(function (s) { so.observe(s); });
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(function (el) { el.classList.add('is-in'); });
+    }
+
+    /* Gallery: one frame, contents change */
+    var frame = document.getElementById('frame');
+    var pics = Array.prototype.slice.call(frame.querySelectorAll('picture'));
+    var cap = document.getElementById('frame-cap');
+    var count = document.getElementById('frame-count');
+    var thumbs = document.getElementById('thumbs');
+    var cur = 0, timer = null, paused = false;
+
+    pics.forEach(function (p, i) {
+      var img = p.querySelector('img');
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', img.alt);
+      var t = document.createElement('img');
+      t.src = img.getAttribute('src').replace('-1600.webp', '-480.webp'); t.alt = ''; t.loading = 'lazy'; t.width = 480; t.height = 270;
+      b.appendChild(t);
+      b.addEventListener('click', function () { show(i); paused = true; stop(); });
+      thumbs.appendChild(b);
+    });
+    var tbs = thumbs.querySelectorAll('button');
+
+    function show(i) {
+      cur = (i + pics.length) % pics.length;
+      pics.forEach(function (p, k) { p.classList.toggle('is-on', k === cur); });
+      tbs.forEach(function (b, k) { b.classList.toggle('is-on', k === cur); b.setAttribute('aria-selected', k === cur ? 'true' : 'false'); });
+      cap.textContent = pics[cur].querySelector('img').alt;
+      count.textContent = (cur + 1) + ' / ' + pics.length;
+    }
+    function start() { if (reduce || paused || timer) return; timer = setInterval(function () { show(cur + 1); }, 4200); }
+    function stop() { clearInterval(timer); timer = null; }
+    show(0);
+    if ('IntersectionObserver' in window) {
+      var go = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? start() : stop(); }); }, { threshold: 0.3 });
+      go.observe(frame);
+    } else { start(); }
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+
+    /* Lightbox */
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lb-img');
+    var lbCap = document.getElementById('lb-cap');
+    function lbShow(i) {
+      cur = (i + pics.length) % pics.length;
+      var img = pics[cur].querySelector('img');
+      lbImg.src = img.getAttribute('src').replace('-1600.webp', '-2400.webp');
+      lbImg.alt = img.alt;
+      lbCap.textContent = img.alt + ' · ' + (cur + 1) + ' / ' + pics.length;
+      show(cur);
+    }
+    function openLb() { paused = true; stop(); lbShow(cur); if (lb.showModal) lb.showModal(); else lb.setAttribute('open', ''); }
+    function closeLb() { if (lb.close) lb.close(); else lb.removeAttribute('open'); }
+    frame.addEventListener('click', openLb);
+    document.getElementById('lb-close').addEventListener('click', closeLb);
+    document.getElementById('lb-prev').addEventListener('click', function () { lbShow(cur - 1); });
+    document.getElementById('lb-next').addEventListener('click', function () { lbShow(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') lbShow(cur - 1);   /* RTL: right arrow goes back */
+      if (e.key === 'ArrowLeft') lbShow(cur + 1);
+    });
+    var x0 = null;
+    lb.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) lbShow(dx > 0 ? cur - 1 : cur + 1);
+    }, { passive: true });
+  })();
+  </script>
+</body>
+</html>
