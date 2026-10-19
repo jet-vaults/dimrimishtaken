@@ -64,3 +64,8 @@ body.page-inventory #inventory .modal-content { border-radius: var(--radius-sm);
   .inv-hero-media { order: -1; min-height: 0; aspect-ratio: 16 / 9; }
   .inv-hero-building .num { font-size: 64px; }
 }
+
+/* program labels on the cards */
+body.page-inventory #inventory .lamishtaken { color: var(--olive); font-weight: 600; }
+body.page-inventory #inventory .free-market { color: var(--brown-muted); font-weight: 400; }
+body.page-inventory #inventory .apartment-type { color: var(--brown-soft); }
