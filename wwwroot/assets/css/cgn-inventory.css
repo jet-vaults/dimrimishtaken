@@ -23,13 +23,12 @@ body.page-inventory footer { padding: 56px 0 28px; }
 .inv-hero-building.is-swap { opacity: 0; transform: translateY(8px); }
 .inv-hero-building .word { font-size: clamp(20px, 1.8vw, 26px); font-weight: 300; opacity: .9; }
 .inv-hero-building .num { font-size: clamp(64px, 7vw, 104px); font-weight: 700; color: var(--lime); font-variant-numeric: tabular-nums; }
-.inv-hero-text { font-size: 17px; font-weight: 300; max-width: 46ch; color: rgba(255, 255, 255, .85); }
 .inv-hero-media { position: relative; min-height: 260px; }
 .inv-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 45% 55%; }
 
 /* inventory section */
 body.page-inventory .inventory { padding: 40px 0 72px; }
-.inventory-empty { padding: 32px; border: 1px dashed var(--lime-line); border-radius: var(--radius-sm); background: var(--lime-pale); color: var(--brown-soft); text-align: center; }
+.inventory-empty { padding: 32px; border: 1px dashed var(--line); border-radius: var(--radius-sm); background: #F7F7F5; color: var(--brown-soft); text-align: center; }
 body.page-inventory .inventory-empty a { color: var(--brown); font-weight: 600; text-decoration: underline; }
 .inventory-note { margin-top: 28px; font-size: 14px; font-weight: 300; color: var(--brown-muted); text-align: center; }
 
@@ -39,15 +38,15 @@ body.page-inventory #inventory { font-family: "Ploni", Arial, sans-serif; }
 body.page-inventory #inventory .btn { border-radius: var(--radius-pill); font-weight: 600; padding: 10px 22px; }
 body.page-inventory #inventory .btn-primary, body.page-inventory #inventory .btn-outline-primary:hover, body.page-inventory #inventory .page-item.active .page-link { background-color: var(--brown) !important; border-color: var(--brown) !important; color: #fff !important; }
 body.page-inventory #inventory .btn-secondary { background-color: #fff !important; border-color: var(--brown) !important; color: var(--brown) !important; }
-body.page-inventory #inventory .btn-secondary:hover { background-color: var(--lime-pale) !important; }
+body.page-inventory #inventory .btn-secondary:hover { background-color: #F1F1EE !important; }
 body.page-inventory #inventory .btn-outline-primary, body.page-inventory #inventory .page-link { color: var(--brown) !important; border-color: var(--line) !important; }
 body.page-inventory #inventory .form-select, body.page-inventory #inventory .form-control { border-radius: 8px; border-color: var(--line); font-family: inherit; }
-body.page-inventory #inventory .form-select:focus { border-color: var(--olive); box-shadow: 0 0 0 3px var(--lime-pale); }
+body.page-inventory #inventory .form-select:focus { border-color: var(--brown-muted); box-shadow: 0 0 0 3px rgba(49, 30, 23, .12); }
 body.page-inventory #inventory .form-label { font-weight: 600; color: var(--brown-soft); }
 body.page-inventory #inventory .apartment-card { border-radius: var(--radius-sm); border: 1px solid var(--line); box-shadow: none; transition: box-shadow .25s, transform .25s; }
 body.page-inventory #inventory .apartment-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-body.page-inventory #inventory .apartment-info li { background: var(--lime-pale); border-radius: 50px; }
-body.page-inventory #inventory .apartment-info li i { color: var(--olive); }
+body.page-inventory #inventory .apartment-info li { background: #F1F1EE; border-radius: 50px; }
+body.page-inventory #inventory .apartment-info li i { color: var(--brown-soft); }
 body.page-inventory #inventory .apartment-plan, body.page-inventory #inventory .badge { border-radius: 50px; }
 body.page-inventory #inventory .card { border-radius: var(--radius-sm); border: 1px solid var(--line); box-shadow: none; }
 body.page-inventory #inventory a { color: var(--brown); }
@@ -69,3 +68,18 @@ body.page-inventory #inventory .modal-content { border-radius: var(--radius-sm);
 body.page-inventory #inventory .lamishtaken { color: var(--olive); font-weight: 600; }
 body.page-inventory #inventory .free-market { color: var(--brown-muted); font-weight: 400; }
 body.page-inventory #inventory .apartment-type { color: var(--brown-soft); }
+
+/* one line of apartments per floor: up to five cards across, four in the filter list */
+body.page-inventory #inventory .apartments-row { gap: 16px; padding: 20px 16px; border-width: 1px; border-color: var(--line); border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+body.page-inventory #inventory .apartments-row .apartment-card { flex: 0 0 auto; width: calc(20% - 13px); margin: 0; padding: 14px 10px; }
+body.page-inventory #inventory .apartments-row-filter { gap: 16px; padding: 20px 0; }
+body.page-inventory #inventory .apartments-row-filter .apartment-card { flex: 0 0 auto; width: calc(25% - 12px); margin: 0; }
+body.page-inventory #inventory .floor-title { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+body.page-inventory #inventory .apartment-info { gap: 6px; }
+body.page-inventory #inventory .apartment-info li { padding: 4px 9px; font-size: .85rem; }
+@media (max-width: 1024px) {
+  body.page-inventory #inventory .apartments-row .apartment-card, body.page-inventory #inventory .apartments-row-filter .apartment-card { width: calc(33.333% - 11px); }
+}
+@media (max-width: 640px) {
+  body.page-inventory #inventory .apartments-row .apartment-card, body.page-inventory #inventory .apartments-row-filter .apartment-card { width: 100%; max-width: none; }
+}
