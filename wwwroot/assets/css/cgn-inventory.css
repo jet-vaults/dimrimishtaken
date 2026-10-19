@@ -43,9 +43,9 @@ body.page-inventory #inventory .btn-outline-primary, body.page-inventory #invent
 body.page-inventory #inventory .form-select, body.page-inventory #inventory .form-control { border-radius: 8px; border-color: var(--line); font-family: inherit; }
 body.page-inventory #inventory .form-select:focus { border-color: var(--brown-muted); box-shadow: 0 0 0 3px rgba(49, 30, 23, .12); }
 body.page-inventory #inventory .form-label { font-weight: 600; color: var(--brown-soft); }
-body.page-inventory #inventory .apartment-card { border-radius: var(--radius-sm); border: 1px solid var(--line); box-shadow: none; transition: box-shadow .25s, transform .25s; }
+body.page-inventory #inventory .apartment-card { background: #FDFBF5; border-radius: var(--radius-sm); border: 1px solid #ECE7DA; box-shadow: none; transition: box-shadow .25s, transform .25s; }
 body.page-inventory #inventory .apartment-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-body.page-inventory #inventory .apartment-info li { background: #F1F1EE; border-radius: 50px; }
+body.page-inventory #inventory .apartment-info li { background: #F1EDE2; border-radius: 50px; }
 body.page-inventory #inventory .apartment-info li i { color: var(--brown-soft); }
 body.page-inventory #inventory .apartment-plan, body.page-inventory #inventory .badge { border-radius: 50px; }
 body.page-inventory #inventory .card { border-radius: var(--radius-sm); border: 1px solid var(--line); box-shadow: none; }
@@ -65,8 +65,8 @@ body.page-inventory #inventory .modal-content { border-radius: var(--radius-sm);
 }
 
 /* program labels on the cards */
-body.page-inventory #inventory .lamishtaken { display: inline-block; align-self: center; background: var(--lime); color: var(--brown); font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 50px; margin: -6px 0 8px; }
-body.page-inventory #inventory .free-market { display: inline-block; align-self: center; color: var(--brown-muted); font-weight: 400; font-size: .85rem; padding: 4px 12px; margin: -6px 0 8px; }
+body.page-inventory #inventory .lamishtaken { display: inline-block; align-self: center; background: var(--lime); color: var(--brown); font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 50px; margin: -6px 0 16px; }
+body.page-inventory #inventory .free-market { display: inline-block; align-self: center; color: var(--brown-muted); font-weight: 400; font-size: .85rem; padding: 4px 12px; margin: -6px 0 16px; }
 body.page-inventory #inventory .apartment-type { color: var(--brown-soft); }
 
 /* one line of apartments per floor: up to five cards across, four in the filter list */
