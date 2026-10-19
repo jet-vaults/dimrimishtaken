@@ -184,14 +184,26 @@
     .doc .soon { margin-inline-start: auto; font-size: 14px; font-weight: 600; color: var(--brown-muted); background: var(--sand); border-radius: var(--radius-pill); padding: 6px 12px; white-space: nowrap; }
 
     /* Steps: two-column list with large numerals */
-    .steps { background: #F7F7F2; }
-    .stages { counter-reset: stage; display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
-    .stage { counter-increment: stage; display: grid; grid-template-columns: 72px 1fr; gap: 18px; padding: 24px 0; border-bottom: 1px solid #E3E3D8; align-items: start; }
-    .stage:nth-last-child(-n+2) { border-bottom: 0; }
-    .stage .big { font-size: 56px; line-height: .9; font-weight: 700; color: var(--lime-dark); font-variant-numeric: tabular-nums; }
-    .stage .big::before { content: counter(stage, decimal-leading-zero); }
-    .stage h3 { font-size: 21px; margin-bottom: 8px; }
-    .stage p { font-size: 16px; font-weight: 300; color: var(--brown-soft); }
+    .steps { background: var(--white); }
+    .steps .wrap { max-width: 920px; }
+    .steps-head { text-align: center; margin-bottom: 40px; }
+    .steps-head h2 { font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; font-weight: 700; }
+    .steps-head .rule { display: block; width: 64px; height: 2px; background: var(--olive); margin: 18px auto 0; }
+    .stages { border-top: 1px solid var(--line); }
+    .stage { border-bottom: 1px solid var(--line); }
+    .stage summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 22px 4px; }
+    .stage summary::-webkit-details-marker { display: none; }
+    .stage summary:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; border-radius: var(--radius-sm); }
+    .stage .num { font-weight: 600; color: var(--olive); font-size: 15px; font-variant-numeric: tabular-nums; }
+    .stage .title { font-weight: 600; font-size: clamp(20px, 2vw, 25px); color: var(--brown); transition: color .2s ease; }
+    .stage summary::after { content: ""; width: 22px; height: 22px; background: linear-gradient(var(--brown), var(--brown)) center / 22px 2px no-repeat, linear-gradient(var(--brown), var(--brown)) center / 2px 22px no-repeat; transition: transform .35s ease; }
+    .stage[open] summary::after { transform: rotate(45deg); }
+    .stage summary:hover .title, .stage[open] .title { color: var(--olive); }
+    .stage-body { padding: 0 44px 26px 44px; color: var(--brown-soft); display: grid; gap: 14px; }
+    .stage-body p { font-size: 16px; font-weight: 300; line-height: 1.7; }
+    .stage-body a { color: var(--olive); text-decoration: underline; text-underline-offset: 3px; }
+    .stage-body ol { margin: 0; padding-inline-start: 1.3em; display: grid; gap: 6px; font-size: 16px; font-weight: 300; line-height: 1.7; }
+    .stage-body .note { font-size: 14.5px; color: var(--brown-muted); }
 
     /* CTA band */
     .cta { background: var(--lime); }
@@ -227,15 +239,16 @@
     .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); }
     .lb-prev { inset-inline-start: 16px; } .lb-next { inset-inline-end: 16px; }
 
+    @media (prefers-reduced-motion: reduce) { .stage summary::after { transition: none; } }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .brand-tag span { display: none; }
       .nav-links { display: none; }
-      .about-panel, .about-text, .city-grid, .stages { grid-template-columns: 1fr; }
+      .about-panel, .about-text, .city-grid { grid-template-columns: 1fr; }
       .about-panel { min-height: 0; }
       .about-panel img { aspect-ratio: 16 / 9; }
       .city-grid img { aspect-ratio: 16 / 10; }
-      .stage:nth-last-child(2) { border-bottom: 1px solid #E3E3D8; }
       .facts { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 767px) {
@@ -265,8 +278,9 @@
       .gallery-grid button:nth-child(n) { grid-column: span 2; grid-row: auto; }
       .gallery-grid button:nth-child(2), .gallery-grid button:nth-child(3), .gallery-grid button:nth-child(5), .gallery-grid button:nth-child(6), .gallery-grid button:nth-child(8), .gallery-grid button:nth-child(9) { grid-column: span 1; }
       .docs { grid-template-columns: 1fr; }
-      .stage { grid-template-columns: 56px 1fr; gap: 12px; padding: 20px 0; }
-      .stage .big { font-size: 42px; }
+      .steps-head { margin-bottom: 28px; }
+      .stage summary { padding: 18px 2px; gap: 14px; }
+      .stage-body { padding: 0 0 22px; }
       .foot-top { flex-direction: column; align-items: flex-start; }
       .foot-bottom { flex-direction: column; }
       .lightbox figcaption { padding: 12px 16px 18px; }
@@ -488,24 +502,66 @@
       </div>
     </section>
 
-    <section id="steps" class="steps">
+    <section id="steps" class="steps" aria-labelledby="steps-title">
       <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="label">מחיר למשתכן</div>
-            <h2>שלבים לתכנית מחיר למשתכן</h2>
-          </div>
+        <div class="steps-head">
+          <h2 id="steps-title">שלבים לתכנית מחיר למשתכן</h2>
+          <span class="rule" aria-hidden="true"></span>
         </div>
-        <ol class="stages">
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>אישור זכאות</h3><p>מוציאים אישור זכאות לתכנית באתר משרד הבינוי והשיכון. האישור הוא תנאי להרשמה להגרלה, וביום בחירת הדירה הוא חייב להיות בתוקף.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>הרשמה להגרלה</h3><p>כשההרשמה לפרויקט נפתחת, נרשמים להגרלה באתר התכנית במועדים שמפרסם המשרד. ההרשמה היא לפרויקט ולמתחם ספציפיים.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>ההגרלה</h3><p>משרד הבינוי והשיכון עורך את ההגרלה ומודיע לכל נרשם אם זכה ומה מיקומו ברשימת הזוכים. לפי המיקום הזה נקבע סדר בחירת הדירות.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>הצגת הפרויקט לזוכים</h3><p>הזוכים מקבלים מדמרי קישור לאתר ייעודי עם כל המידע: תוכניות, מפרטים ומלאי הדירות. זה הזמן להכין רשימת עדיפויות.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>אישור עקרוני למשכנתא</h3><p>עוד לפני בחירת הדירה פונים לבנק לקבלת אישור עקרוני, כדי לדעת איזה מימון עומד לרשותכם ולבחור דירה בביטחון.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בחירת הדירה</h3><p>במועד שנקבע, לפי סדר הזכייה, בוחרים דירה מתוך המלאי הפנוי. מגיעים עם הודעת הזכייה, אישור זכאות בתוקף ותעודות זהות. הבחירה סופית ומלווה בדמי רצינות שמתקזזים ממחיר הדירה.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>חתימה על חוזה המכר</h3><p>חותמים על ההסכם שאושר על ידי משרד הבינוי והשיכון, מיד לאחר הבחירה או עד 30 יום ממנה. בזכייה זוגית שני בני הזוג חותמים.</p></div></li>
-          <li class="stage"><span class="big" aria-hidden="true"></span><div><h3>בנייה ומסירת מפתחות</h3><p>הפרויקט נבנה והרוכשים משלמים לפי לוח התשלומים שבחוזה. בסיום הבנייה מקבלים את המפתחות. בדמרי NEXT האכלוס צפוי בעוד כשלוש שנים.</p></div></li>
-        </ol>
+        <div class="stages">
+          <details class="stage" open>
+            <summary><span class="num" aria-hidden="true">01</span><span class="title">הנפקת תעודת זכאות</span></summary>
+            <div class="stage-body">
+              <p>כדי להירשם לפרויקט "מחיר למשתכן" תחילה עליכם להנפיק "אישור זכאות" על פי התנאים המוצגים באתר משרד הבינוי והשיכון בכתובת: <a href="https://www.moch.gov.il" target="_blank" rel="noopener" dir="ltr">www.moch.gov.il</a>. הנפקת התעודה עצמה מתבצעת באמצעות אחת מחברות ההרשמה: מרכז אלונים מקבוצת מ.ג.ע.ר, מילגם, עמידר. תעודת הזכאות תונפק לאחר הוכחת עמידת המבקש בקריטריונים שנקבעו על ידי משרד הבינוי והשיכון. אם יש בידכם אישור זכאות קיים, תוכלו להשתמש בו ובתנאי שהינו בתוקף ליום ההרשמה להגרלה.</p>
+              <p class="note">* הערה - יובהר כי המידע המחייב בדבר הנפקת תעודת הזכאות הינו זה אשר מופיע באתר משרד הבינוי והשיכון, והמידע באתר הייעודי לפרויקט מפורסם לרקע כללי בלבד.</p>
+            </div>
+          </details>
+          <details class="stage">
+            <summary><span class="num" aria-hidden="true">02</span><span class="title">הרשמה לפרויקט</span></summary>
+            <div class="stage-body">
+              <p>משרד השיכון יפתח את ההגרלה למשך 22 יום באמצעות אתר הגרלות ייעודי המיועד לבעלי אישורי זכאות בתוקף בלבד. במסגרת ההרשמה תידרשו להזין את מספר תעודת הזהות של הזוכים ואת מספר אישור הזכאות כמפורט באישור הזכאות. כתובת האתר: <a href="https://www.dira.moch.gov.il" target="_blank" rel="noopener" dir="ltr">www.dira.moch.gov.il</a></p>
+              <p>פתיחת ההרשמה לפרויקט תפורסם בעיתונות הכתובה על ידי החברה.</p>
+              <p class="note">** מומלץ כי טרם ההרשמה להגרלה תתייעצו עם בנק משכנתאות לבדיקת האפשרויות הכלכליות העומדות בפניכם לצורך מימון רכישת הדירה.</p>
+            </div>
+          </details>
+          <details class="stage">
+            <summary><span class="num" aria-hidden="true">03</span><span class="title">ההגרלה</span></summary>
+            <div class="stage-body">
+              <p>ההגרלה תתקיים עד 10 ימים לאחר סיום ההרשמה לפרויקט. ההגרלה תתבצע על ידי משרד השיכון. ההגרלה הינה על המיקום בסדר בחירת הדירות, כלומר, הזוכה שעלה ראשון יבחר את הדירה הראשונה בפרויקט, הזוכה השני יבחר שני וכך על פי הסדר.</p>
+              <p class="note">** הודעה על שמות הזוכים ועל המיקום בבחירת הדירה תישלח בדואר אלקטרוני ובדואר רשום על ידי משרד הבינוי והשיכון. הודעה תינתן גם לנרשמים אשר לא עלו כלל בהגרלה. בשלב זה, אין לפנות באופן יזום למשרדי החברה.</p>
+            </div>
+          </details>
+          <details class="stage">
+            <summary><span class="num" aria-hidden="true">04</span><span class="title">הצגת הפרויקט לזוכים</span></summary>
+            <div class="stage-body">
+              <p>החברה תשלח לזוכים בהגרלה (באמצעות טלפון/דוא"ל) קישור לאתר ייעודי ובו מידע מקיף על הפרויקט. בתקופה שבין שליחת המידע לאירוע בחירת הדירות, על הרוכש להחליט באיזו דירה הוא מעוניין. כמו כן, על הרוכש להתכונן מראש ולהכין רשימת עדיפויות מבעוד מועד. ניתן להתעדכן בכל רגע נתון באתר האינטרנט הייעודי של החברה ובאתר של משרד השיכון אודות מלאי הדירות הנותר לרכישה בפרויקט. אנו ממליצים לבדוק מבעוד מועד את אפשרות מימון הדירה ולוודא שאתם זכאים לקבל אישור עקרוני לקבלת הלוואה מובטחת משכנתא מאחד הבנקים למשכנתאות.</p>
+            </div>
+          </details>
+          <details class="stage">
+            <summary><span class="num" aria-hidden="true">05</span><span class="title">בחירת הדירה</span></summary>
+            <div class="stage-body">
+              <p>הליך בחירת הדירה מוגבל מראש ל-45 דקות בלבד. במעמד הפגישה יציגו הזוכים את האישורים הנדרשים לרבות: הודעת זכייה, ייפויי כוח:</p>
+              <ol>
+                <li>ייפוי כוח לבן/בת הזוג - במידה ואחד מבני הזוג לא יוכל להגיע לבחירת דירה יש להציג ייפוי כוח מבן הזוג לבחירת דירה, ותעודה מזהה.</li>
+                <li>ייפוי כוח נוטריוני בן זוג - יש להציג באם אחד מבני הזוג לא יוכל להגיע לחתימת הסכם מכר, ותעודה מזהה.</li>
+                <li>ייפוי כוח נוטריוני לצד ג' - יש להציג באם שני בני הזוג לא מגיעים לבחירת הדירה ו/או לחתימת הסכם מכר, ותעודות מזהות.</li>
+              </ol>
+              <p>במהלך הפגישה האישית לבחירת הדירה הרוכשים יחתמו על טופס בחירת דירה אשר נוסחו יפורסם באתר הייעודי לפרויקט. חשוב לדעת כי לרוכש הדירה לא תהיה אפשרות לשנות את בחירתו. אי הגעה במועד ובזמן שנקבע לפגישת "בחירת הדירה" תבטל את זכותכם לבחירת דירה. סדר בחירת הדירות הינו לפי מיקום הזכייה בהגרלה. במידה והבחירה היא זוגית, על שני בני הזוג להגיע לבחירת הדירה.</p>
+              <p>לפגישת בחירת הדירה חייבים להגיע כל הזוכים הרשומים בטופס אישור הזכייה אשר נשלח אליכם על ידי משרד השיכון. במעמד החתימה על טופס בחירת הדירה ייגבה סך של 2,000 ₪ כדמי רצינות אשר לא יוחזרו במקרה של ביטול. במידה וייחתם הסכם מכר, יקוזז סכום זה ממחיר הדירה הסופי. מובהר כי חתימה על טופס בחירת הדירה מהווה אישור לסיום הליך בחירת הדירה.</p>
+              <p>מודגש כי אין התחייבות כלשהי מטעם החברה להבטיח דירה זו או אחרת. הנ"ל בכפוף למלאי הדירות הפנויות ולמיקום הזוכה בהגרלה.</p>
+            </div>
+          </details>
+          <details class="stage">
+            <summary><span class="num" aria-hidden="true">06</span><span class="title">חתימה על חוזה</span></summary>
+            <div class="stage-body">
+              <p>מובהר כי חוזה המכר ונספחיו נבדקו ואושרו על ידי משרד הבינוי. חתימה על חוזה מכר לרכישת הדירה יכולה להיות מיד לאחר סיום הליך בחירת הדירה כמפורט בשלב 5 לעיל, או עד 30 ימים קלנדריים מיום בחירת הדירה והחתימה על טופס בחירת דירה.</p>
+              <p>במידה והזכייה היא זוגית, על שני בני הזוג להגיע לחתימת החוזה. במידה ורק אחד מבני הזוג מגיע, יש להצטייד בייפוי כוח נוטריוני.</p>
+              <p>לא ניתן להוסיף או להחסיר משמות הזוכים.</p>
+              <p>הערה כללית: בכל מקרה של אי עמידה בכל אחד מהמועדים המצוינים, בכל שלב שהוא, תהיה אפשרות לפסול את הזכייה ו/או לשנות את מיקום הזוכה בסדר בחירת יחידות הדיור, לפי שיקול דעתה הבלעדי של החברה המנהלת, לרבות במקרה בו הזוכה לא הגיע במועד שנקבע לו לבחירת הדירה ו/או לא הגיע לחתום על הסכם המכר במועד שנקבע לו.</p>
+              <p class="note">* המועדים המצוינים עשויים להשתנות בהתאם להחלטת משרד הבינוי והשיכון. המידע המחייב הוא זה המופיע באתר משרד הבינוי והשיכון; המידע באתר זה הוא לרקע כללי בלבד.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
