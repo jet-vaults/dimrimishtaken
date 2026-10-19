@@ -65,8 +65,8 @@ body.page-inventory #inventory .modal-content { border-radius: var(--radius-sm);
 }
 
 /* program labels on the cards */
-body.page-inventory #inventory .lamishtaken { display: inline-block; background: var(--lime); color: var(--brown); font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 50px; margin: -6px 0 8px; }
-body.page-inventory #inventory .free-market { display: inline-block; color: var(--brown-muted); font-weight: 400; font-size: .85rem; padding: 4px 12px; margin: -6px 0 8px; }
+body.page-inventory #inventory .lamishtaken { display: inline-block; align-self: center; background: var(--lime); color: var(--brown); font-weight: 700; font-size: .85rem; padding: 4px 12px; border-radius: 50px; margin: -6px 0 8px; }
+body.page-inventory #inventory .free-market { display: inline-block; align-self: center; color: var(--brown-muted); font-weight: 400; font-size: .85rem; padding: 4px 12px; margin: -6px 0 8px; }
 body.page-inventory #inventory .apartment-type { color: var(--brown-soft); }
 
 /* one line of apartments per floor: up to five cards across, four in the filter list */
